@@ -9,7 +9,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ title, children, navbarIncluded = true }: LayoutProps) => {
-  const headerTitle = `Foodie | ${title}`;
+  const headerTitle = `Hotcat | ${title}`;
   return (
     <div className="container h-screen w-full overflow-x-hidden mx-auto border-white px-3 py-1 text-black font-inter leading-none">
       <Head>
