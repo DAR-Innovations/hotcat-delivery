@@ -1,4 +1,4 @@
-import Layout from "components/layout/Layout";
+import Layout from "components/Layout/Layout";
 import HomeBanner from "components/UI/Banners/HomeBanner";
 import type { NextPage } from "next";
 

@@ -2,7 +2,7 @@ import {
   AUTH_PAGES_LINKS,
   NAVBAR_PAGES_LINKS,
   PAGES_LINKS,
-} from "components/common/pageLinks";
+} from "common/pageLinks";
 import CartSolid from "components/UI/Icons/CartSolid";
 import Link from "next/link";
 import { useRouter } from "next/router";

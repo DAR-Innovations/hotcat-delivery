@@ -1,4 +1,4 @@
-import { AUTH_PAGES_LINKS, PAGES_LINKS } from "components/common/pageLinks";
+import { AUTH_PAGES_LINKS, PAGES_LINKS } from "common/pageLinks";
 import Link from "next/link";
 import React from "react";
 
