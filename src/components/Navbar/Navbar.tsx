@@ -47,7 +47,7 @@ const Navbar = () => {
         </div>
         <div>
           <Link href={AUTH_PAGES_LINKS.SIGNUP.path}>
-            <p className="border-2 border-black px-6 py-1 cursor-pointer hover:bg-black hover:text-white duration-200 transition-all">
+            <p className="border-2 border-black px-6 py-2 cursor-pointer hover:bg-black hover:text-white duration-200 transition-all rounded-xl">
               {AUTH_PAGES_LINKS.SIGNUP.name}
             </p>
           </Link>
