@@ -32,9 +32,7 @@ const Navbar = () => {
     <div className="flex py-5 items-center justify-between">
       <div>
         <Link href={PAGES_LINKS.HOME.path}>
-          <h1 className="cursor-pointer text-3xl font-jacques">
-            foodie
-          </h1>
+          <h1 className="cursor-pointer text-3xl font-jacques">hotcat</h1>
         </Link>
       </div>
       <div className="flex items-center gap-x-7">{renderedNavbarLinks}</div>
