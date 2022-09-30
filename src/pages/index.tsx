@@ -53,7 +53,7 @@ const Home: NextPage = () => {
             <h2 className="text-center sm:text-start text-xl sm:text-3xl font-bold leading-none">
               Living well begins <br /> with eating well
             </h2>
-            <p className="text-center sm:text-start gray-600 text-base sm:text-lg leading-none">
+            <p className="text-start px-5 gray-600 text-base sm:text-lg leading-none">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsum is that it has a more-or-less normal

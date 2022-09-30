@@ -21,7 +21,7 @@ const Layout = ({
   const headerTitle = `Hotcat | ${title}`;
 
   return (
-    <div className="h-screen w-full overflow-x-hidden">
+    <div className="h-screen w-full overflow-x-hidden pb-20">
       <Head>
         <title>{headerTitle}</title>
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
