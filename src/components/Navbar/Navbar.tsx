@@ -55,16 +55,11 @@ const Navbar = () => {
           <picture>
             <img
               loading="lazy"
-              className="hidden sm:inline-block h-9 object-contain"
+              className="inline-block h-9 object-contain"
               src="/assets/logoWithText.png"
               alt="hotcat"
             />
-            <img
-              loading="lazy"
-              className="inline-block sm:hidden h-9 object-contain"
-              src="/assets/logoWihoutText.png"
-              alt="hotcat"
-            />
+
           </picture>
         </Link>
       </div>
