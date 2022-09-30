@@ -5,13 +5,13 @@ import React from "react";
 const HomeBanner = () => {
   return (
     <div>
-      <div className="hidden sm:flex sm:bg-[#E5F3FC] px-10 py-6 w-full sm:h-[400px] lg:h-[500px] justify-center items-center rounded-3xl">
+      <div className="hidden sm:flex sm:bg-[url('/assets/homeBannerBackground.png')] bg-cover px-10 py-6 w-full sm:h-[400px] lg:h-[500px] justify-center items-center rounded-3xl">
         <div className="w-full flex items-center justify-center sm:gap-x-12 lg:gap-x-36">
           <div>
-            <h1 className="sm:text-2xl lg:text-5xl font-bold sm:mb-1 lg:mb-5">
+            <h1 className="sm:text-2xl text-white lg:text-5xl font-bold sm:mb-1 lg:mb-5">
               Over thousand <br /> flavors in one place
             </h1>
-            <p className="text-gray-500 sm:text-base lg:text-xl leading-[100%] sm:mb-7 lg:mb-10">
+            <p className="text-gray-300 sm:text-base lg:text-lg leading-[100%] sm:mb-7 lg:mb-10">
               Just confirm you order <br /> and enjoy your delicious food
             </p>
             <div className="flex items-center gap-x-8">
@@ -25,7 +25,7 @@ const HomeBanner = () => {
 
               <div>
                 <Link href={AUTH_PAGES_LINKS.SIGNUP.path}>
-                  <p className="text-gray-500 underline text-lg cursor-pointer">
+                  <p className="text-gray-300 underline text-lg cursor-pointer">
                     Create account
                   </p>
                 </Link>
@@ -37,7 +37,7 @@ const HomeBanner = () => {
             <picture>
               <img
                 loading="eager"
-                className="max-w-full w-[230px]  sm:w-[280px] lg:w-[400px]"
+                className="max-w-full w-[330px]  sm:w-[380px] lg:w-[500px]"
                 src="/assets/plateWithSteakPhoto.png"
                 alt="food"
               />
@@ -48,7 +48,11 @@ const HomeBanner = () => {
 
       <div className="inline-block sm:hidden w-full">
         <picture>
-          <img className="w-full max-h-[300px]" src="/assets/plateWithSteakPhotoMobile.png" alt="food" />
+          <img
+            className="w-full max-h-[300px]"
+            src="/assets/plateWithSteakPhotoMobile.png"
+            alt="food"
+          />
         </picture>
       </div>
     </div>
