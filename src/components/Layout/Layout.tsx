@@ -11,12 +11,14 @@ interface LayoutProps {
 const Layout = ({ title, children, navbarIncluded = true }: LayoutProps) => {
   const headerTitle = `Hotcat | ${title}`;
   return (
-    <div className="container h-screen w-full overflow-x-hidden mx-auto border-white px-3 py-1 text-black font-inter leading-none">
+    <div className="h-screen w-full overflow-x-hidden ">
       <Head>
         <title>{headerTitle}</title>
       </Head>
-      {navbarIncluded && <Navbar />}
-      {children}
+      <div className="container mx-auto px-3 py-1 bg-white text-black font-inter leading-none">
+        {navbarIncluded && <Navbar />}
+        {children}
+      </div>
     </div>
   );
 };
