@@ -52,7 +52,20 @@ const Navbar = () => {
     <div className="flex py-5 items-center justify-between">
       <div>
         <Link href={PAGES_LINKS.HOME.path}>
-          <h1 className="cursor-pointer text-3xl font-jacques">hotcat</h1>
+          <picture>
+            <img
+              loading="lazy"
+              className="hidden sm:inline-block h-9 object-contain"
+              src="/assets/logoWithText.png"
+              alt="hotcat"
+            />
+            <img
+              loading="lazy"
+              className="inline-block sm:hidden h-9 object-contain"
+              src="/assets/logoWihoutText.png"
+              alt="hotcat"
+            />
+          </picture>
         </Link>
       </div>
 
