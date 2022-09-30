@@ -37,7 +37,7 @@ const HomeBanner = () => {
             <picture>
               <img
                 loading="eager"
-                className="max-w-full w-[330px]  sm:w-[380px] lg:w-[500px]"
+                className="mt-8 max-w-full w-[330px]  sm:w-[380px] lg:w-[500px]"
                 src="/assets/plateWithSteakPhoto.png"
                 alt="food"
               />
