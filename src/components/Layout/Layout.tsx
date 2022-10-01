@@ -16,12 +16,12 @@ const Layout = ({
   navbarIncluded = true,
 }: LayoutProps) => {
   const layoutClassName = !Boolean(className)
-    ? "container mx-auto px-3 py-1 bg-white text-black font-inter leading-none"
+    ? "container mx-auto px-3 py-1 bg-white text-black font-inter leading-none  pb-20"
     : className;
   const headerTitle = `Hotcat | ${title}`;
 
   return (
-    <div className="h-screen w-full overflow-x-hidden pb-20">
+    <div className="h-screen w-full overflow-x-hidden">
       <Head>
         <title>{headerTitle}</title>
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
