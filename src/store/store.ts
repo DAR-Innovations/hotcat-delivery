@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import activeMenuFoodModalSlice from "./slices/menuFoodModalSlice";
-// ...
+import cartSliceReducaer, { cartSlice } from "./slices/cartSlice";
+import menuFoodModalSliceReducer, {
+  menuFoodModalSlice,
+} from "./slices/menuFoodModalSlice";
 
 export const store = configureStore({
   reducer: {
-    menuFoodModal: activeMenuFoodModalSlice,
+    [menuFoodModalSlice.name]: menuFoodModalSliceReducer,
+    [cartSlice.name]: cartSliceReducaer,
   },
 });
 

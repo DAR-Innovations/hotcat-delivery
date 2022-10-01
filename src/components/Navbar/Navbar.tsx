@@ -7,13 +7,22 @@ import CartSolid from "components/UI/Icons/CartSolid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { selectSizeOfCartItemsArr } from "store/slices/cartSlice";
+import { useAppSelector } from "store/store";
 import BurgerButtonHandler from "./BurgerButtonHandler";
 
 const Navbar = () => {
+  const cartSize = useAppSelector(selectSizeOfCartItemsArr);
   const [isBurgerModalActive, setBurgerModalActive] = useState(false);
   const [isProfileModalActive, setIsProfileModalActive] = useState(false);
 
   const { pathname } = useRouter();
+
+  const cartItemsIndicator = cartSize > 0 && (
+    <div className="absolute -top-3 -right-2 w-5 h-5 bg-red-500 rounded-md flex justify-center items-center">
+      <p className="text-white text-xs">{cartSize}</p>
+    </div>
+  );
 
   const renderedNavbarLinks = Object.entries(NAVBAR_PAGES_LINKS).map(
     ([_, page]) => {
@@ -80,13 +89,11 @@ const Navbar = () => {
       </div>
 
       {/* Auth, cart, burger */}
-      <div className="flex items-center gap-x-5 sm:gap-x-7">
+      <div className="flex items-center gap-x-3 sm:gap-x-7">
         {/* Cart */}
         <div className="relative cursor-pointer mr-2 sm:mr-0">
           <CartSolid className="w-6 h-6" />
-          <div className="absolute -top-3 -right-2 w-5 h-5 bg-red-500 rounded-md flex justify-center items-center">
-            <p className="text-white text-xs">1</p>
-          </div>
+          {cartItemsIndicator}
         </div>
         {/* Auth */}
         <div>

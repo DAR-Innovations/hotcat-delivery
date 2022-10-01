@@ -31,9 +31,9 @@ export const { closeMenuFoodModal, setSelectedMenuFoodAndOpen } =
   menuFoodModalSlice.actions;
 
 export const selectIsModalActive = (state: RootState) =>
-  state.menuFoodModal.isModalActive;
+  state.menuFoodModalSlice.isModalActive;
 
 export const selectSelectedMenuFood = (state: RootState) =>
-  state.menuFoodModal.data;
+  state.menuFoodModalSlice.data;
 
 export default menuFoodModalSlice.reducer;
