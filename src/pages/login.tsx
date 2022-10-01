@@ -2,6 +2,7 @@ import { PAGES_LINKS } from "common/pageLinks";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import Layout from "components/Layout/Layout";
 import NotificationModal from "components/NotificationModal/NotificationModal";
+import BackSolid from "components/UI/Icons/BackSolid";
 import { NextPage } from "next";
 import Link from "next/link";
 import Router from "next/router";
@@ -40,11 +41,24 @@ const LoginPage: NextPage = () => {
     <Layout
       title={PAGES_LINKS.LOGIN.name}
       navbarIncluded={false}
-      className="w-full"
+      className="w-full h-screen bg-[url('/assets/signupBackground.jpg')] bg-cover"
     >
-      <div className="w-full h-screen  bg-[url('/assets/signupBackground.jpg')] bg-cover">
-        <div className="w-full h-screen bg-gray-600 bg-opacity-50 backdrop-blur-lg flex items-center justify-center">
-          <div className="p-4 min-w-[330px] sm:min-w-[360px]">
+      <div className="w-full h-screen bg-gray-600 bg-opacity-50 backdrop-blur-lg flex flex-col items-center justify-center">
+        <div className="max-w-[370px] relative">
+          {/* Back link */}
+          <div className="absolute -top-10 -left-1">
+            <Link href={PAGES_LINKS.HOME.path}>
+              <div className="flex items-center gap-1 cursor-pointer">
+                <BackSolid className="w-4 h-4" filledColor="rgb(209 213 219)" />
+                <p className="text-sm sm:stext-base text-gray-300 font-normal">
+                  {PAGES_LINKS.HOME.name}
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          {/* Form */}
+          <div className="min-w-[330px] sm:min-w-[360px] h-full">
             <h1 className="text-2xl font-semibold text-gray-200">
               Login into <br /> your account
             </h1>
