@@ -1,5 +1,6 @@
 import { koreanRestaurant } from "common/mockEntities";
 import Layout from "components/Layout/Layout";
+import MenuFoodList from "components/MenuFoodList/MenuFoodList";
 import RestaurantList from "components/RestaurantsList/RestaurantList";
 import React from "react";
 
@@ -11,8 +12,8 @@ const RestaurantMenuPage = () => {
     <Layout title="Menu">
       <h1 className="font-semibold text-3xl py-7">{data.name}</h1>
       <div className="grid sm:grid-cols-5 lg:grid-cols-4 gap-x-4 ">
-        <main className="col-span-4 sm:col-span-3 lg:col-span-3">
-          <RestaurantList />
+        <main className="w-full col-span-4 sm:col-span-3 lg:col-span-3">
+          <MenuFoodList />
         </main>
 
         <div className="relative hidden sm:block sm:col-span-2 lg:col-span-1 h-full">

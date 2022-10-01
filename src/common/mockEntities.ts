@@ -1,5 +1,7 @@
+import { IFood } from "./types/food.type";
 import { IRestaurant } from "./types/restaurant.type";
 
+//Restaurants mock
 export const koreanRestaurant: IRestaurant = {
   id: 0,
   name: "Korean Restaurant",
@@ -43,4 +45,25 @@ export const listOfRestaurants: IRestaurant[] = [
   mexicanRestaurant,
   koreanRestaurant,
   mexicanRestaurant,
+];
+
+//Food menu mock
+const food: IFood = {
+  id: 0,
+  name: "Chicke ramen",
+  description: "Korean tradional food Ramen with chicken Korean tradional food Ramen with chicken n with chicken Korean tradional food Ramen with chicken",
+  price: 2300,
+  image:
+    "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
+};
+
+export const listOfFood: IFood[] = [
+  food,
+  food,
+  food,
+  food,
+  food,
+  food,
+  food,
+  food,
 ];

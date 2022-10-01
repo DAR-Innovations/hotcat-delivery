@@ -12,7 +12,7 @@ interface RestaurantListExceprtProps {
 }
 
 const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
-  const restaurantMenuLink = `${PAGES_LINKS.MENU.path}/${data.id}`;
+  const restaurantMenuExcerptLink = `${PAGES_LINKS.MENU.path}/${data.id}`;
 
   const restaurantDetails = [
     data.deliveryPrice,
@@ -22,7 +22,7 @@ const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
 
   return (
     <div className="w-[80%] h-[335px] sm:min-w-[200px] sm:max-w-[290px] lg:w-[280px] bg-[#ffffff] shadow-xl rounded-xl hover:scale-105 transition-all duration-400 cursor-pointer">
-      <Link href={restaurantMenuLink}>
+      <Link href={restaurantMenuExcerptLink}>
         <div>
           <div className="w-full h-[200px] rounded-xl">
             <picture>
@@ -43,13 +43,15 @@ const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
             </p>
             <hr className="min-w-full min-h-[2px] bg-gray-300" />
             <div className="flex items-center gap-x-5 mt-3 truncate overflow-x-hidden">
-              <p className="text-base text-gray-600 flex items-center gap-2">
+              <p className="text-sm sm:text-base text-gray-600 flex items-center gap-2">
                 <CarSolid className="w-5 h-5" filledColor="rgb(75 85 99)" />
                 {data.deliveryPrice}
                 <TengeSolid className="w-3 h-3" filledColor="rgb(75 85 99)" />
               </p>
-              <p className="text-base text-gray-600">{data.deliveryTime}</p>
-              <p className="text-base text-gray-600 flex items-center gap-1">
+              <p className="text-sm sm:text-base text-gray-600">
+                {data.deliveryTime}
+              </p>
+              <p className="text-sm sm:text-base text-gray-600 flex items-center gap-1">
                 <StarOutline className="w-5 h-5" filledColor="rgb(75 85 99)" />
                 {data.rating}
               </p>
