@@ -20,10 +20,12 @@ export const cartSlice = createSlice({
         item => item.menuFood.id === menuFoodId
       );
 
-      if (cartItemIndex == -1) {
+      if (cartItemIndex === -1) {
         state.cartItemsArr.push(action.payload);
       } else {
-        state.cartItemsArr[cartItemIndex] = action.payload;
+        state.cartItemsArr = state.cartItemsArr.filter(
+          item => item.menuFood.id !== menuFoodId
+        );
       }
     },
     updateCartItemTotalPrice: (state, action: PayloadAction<ICartItem>) => {
@@ -82,6 +84,39 @@ export const selectCartItemsArr = (state: RootState) =>
 
 export const selectSizeOfCartItemsArr = (state: RootState) => {
   return state.cartSlice.cartItemsArr.length;
+};
+
+export const selectCartTotalPrice = (state: RootState) => {
+  return state.cartSlice.cartItemsArr.reduce(
+    (sum, item) => sum + item.totalPrice,
+    0
+  );
+};
+
+export const selectCountOfCartItem = (
+  state: RootState,
+  cartItem: ICartItem
+) => {
+  const menuFoodId = cartItem.menuFood.id;
+
+  const cartItemIndex = state.cartSlice.cartItemsArr.findIndex(
+    item => item.menuFood.id === menuFoodId
+  );
+
+  return state.cartSlice.cartItemsArr[cartItemIndex].count;
+};
+
+export const selectTotalPriceOfCartItem = (
+  state: RootState,
+  cartItem: ICartItem
+) => {
+  const menuFoodId = cartItem.menuFood.id;
+
+  const cartItemIndex = state.cartSlice.cartItemsArr.findIndex(
+    item => item.menuFood.id === menuFoodId
+  );
+
+  return state.cartSlice.cartItemsArr[cartItemIndex].totalPrice;
 };
 
 export default cartSlice.reducer;

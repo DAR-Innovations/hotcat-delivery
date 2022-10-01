@@ -5,6 +5,7 @@ import MenuFoodOrdersListExcerpt from "./MenuFoodOrdersListExcerpt";
 
 const MenuFoodOrdersList = () => {
   const cartItems = useAppSelector(selectCartItemsArr);
+
   const renderedMenuFoodOrdersExcerpt = cartItems.map(item => (
     <MenuFoodOrdersListExcerpt key={item.menuFood.id} data={item} />
   ));

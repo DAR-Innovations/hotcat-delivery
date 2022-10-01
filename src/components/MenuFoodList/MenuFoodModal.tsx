@@ -49,7 +49,7 @@ const MenuFoodModal = () => {
       totalPrice: totalPrice,
       menuFood: selectedFood!,
     };
-
+    
     dispatch(setCartItem(cartItem));
     handleCloseModal();
   };

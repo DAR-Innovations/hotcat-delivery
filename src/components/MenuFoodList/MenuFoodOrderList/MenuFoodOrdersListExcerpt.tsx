@@ -7,10 +7,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import {
   addCountToCartItem,
   removeCartItem,
+  selectCountOfCartItem,
+  selectTotalPriceOfCartItem,
   substractCountOfCartItem,
   updateCartItemTotalPrice,
 } from "store/slices/cartSlice";
-import { useAppDispatch } from "store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
 
 interface MenuFoodOrdersListExcerptProps {
   data: ICartItem;
@@ -19,10 +21,16 @@ interface MenuFoodOrdersListExcerptProps {
 const MenuFoodOrdersListExcerpt = ({
   data,
 }: MenuFoodOrdersListExcerptProps) => {
+  const cartItemCount = useAppSelector(state =>
+    selectCountOfCartItem(state, data)
+  );
+  const totalProceItemCount = useAppSelector(state =>
+    selectTotalPriceOfCartItem(state, data)
+  );
   const dispatch = useAppDispatch();
 
-  const [foodCount, setFoodCount] = useState(data.count);
-  const [totalPrice, setTotalPrice] = useState(data.totalPrice);
+  const [foodCount, setFoodCount] = useState(cartItemCount);
+  const [totalPrice, setTotalPrice] = useState(totalProceItemCount);
 
   useEffect(() => {
     setTotalPrice(foodCount * data.menuFood.price);
@@ -43,11 +51,18 @@ const MenuFoodOrdersListExcerpt = ({
     }
   }, [data, dispatch, foodCount]);
 
+  const handleRemoveCartItem = () => {
+    dispatch(removeCartItem(data));
+  };
+
   return (
     <div className="w-full bg-gray-100 py-2 px-3 rounded-lg">
       <div className="flex items-center justify-between gap-x-1 gap-y-1 flex-wrap">
         <div className="max-w-[80%] flex items-center gap-3">
-          <CloseSolid className="w-5 h-5" />
+          <CloseSolid
+            onClick={handleRemoveCartItem}
+            className="w-5 h-5 cursor-pointer"
+          />
 
           <div>
             <h1 className="font-semibold text-lg truncate overflow-x-hidden">
