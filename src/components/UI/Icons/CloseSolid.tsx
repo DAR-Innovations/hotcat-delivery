@@ -2,7 +2,7 @@ import React from "react";
 import { IIconProps } from "./CartSolid";
 
 interface CloseSolidProps extends IIconProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const CloseSolid = ({ className, filledColor, onClick }: CloseSolidProps) => {
