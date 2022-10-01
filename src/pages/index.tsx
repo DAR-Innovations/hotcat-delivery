@@ -1,3 +1,4 @@
+import { PAGES_LINKS } from "common/pageLinks";
 import Layout from "components/Layout/Layout";
 import HomeBanner from "components/UI/Banners/HomeBanner";
 import DeliveryCarOutline from "components/UI/Icons/DeliveryCarOutline";
@@ -8,7 +9,7 @@ import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
-    <Layout title="Home">
+    <Layout title={PAGES_LINKS.HOME.name}>
       <HomeBanner />
 
       <main className="mt-10 sm:mt-20 flex flex-col gap-y-12 sm:gap-y-20 lg:gap-y-24 mb-30">
@@ -53,7 +54,7 @@ const Home: NextPage = () => {
             <h2 className="text-center sm:text-start text-xl sm:text-3xl font-bold leading-none">
               Living well begins <br /> with eating well
             </h2>
-            <p className="text-start px-5 gray-600 text-base sm:text-lg leading-none">
+            <p className="text-start px-5 sm:px-0 gray-600 text-base sm:text-lg leading-none">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsum is that it has a more-or-less normal

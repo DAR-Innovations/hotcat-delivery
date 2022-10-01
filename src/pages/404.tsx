@@ -5,7 +5,7 @@ import React from "react";
 
 const NotFoundPage = () => {
   return (
-    <Layout navbarIncluded={false} title={"Not found"} className="w-full">
+    <Layout navbarIncluded={false} title="Not found" className="w-full">
       <div className="w-full h-screen bg-black flex flex-col justify-center items-center">
         <div className=" mb-12">
           <h1 className="text-center text-8xl sm:text-9xl text-white font-bold mb-5">

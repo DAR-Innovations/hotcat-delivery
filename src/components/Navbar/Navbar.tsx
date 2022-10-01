@@ -55,11 +55,10 @@ const Navbar = () => {
           <picture>
             <img
               loading="lazy"
-              className="inline-block h-9 object-contain"
+              className="inline-block h-9 object-contain cursor-pointer"
               src="/assets/logoWithText.png"
               alt="hotcat"
             />
-
           </picture>
         </Link>
       </div>
