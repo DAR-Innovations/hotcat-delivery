@@ -32,8 +32,8 @@ const NotificationModal = ({
   }, [isActive]);
 
   const styleDependsOnType = `${
-    isActive ? "visible opacity-100" : " nvisible opacity-0"
-  } fixed transition-all duration-300 delay-200 justify-center items-center bottom-10 right-10 max-w-[350px] min-w-[300px] bg-opacity-50 py-4 px-8 rounded-xl ${
+    isActive ? "visible opacity-100" : "invisible opacity-0"
+  } fixed transition-all duration-300 delay-200 justify-center items-center bottom-10 right-10 max-w-[350px] min-w-[300px] py-4 px-8 rounded-xl ${
     type === NOTIFICATION_TYPES.ERROR && ERROR_MODAL_STYLE
   } ${type === NOTIFICATION_TYPES.SUCCESS && SUCCESS_MODAL_STYLE}`;
   return (
