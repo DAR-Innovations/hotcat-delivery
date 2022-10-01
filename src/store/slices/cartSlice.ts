@@ -26,10 +26,27 @@ export const cartSlice = createSlice({
         state.cartItemsArr[cartItemIndex] = action.payload;
       }
     },
+    updateCartItemTotalPrice: (state, action: PayloadAction<ICartItem>) => {
+      const menuFoodId = action.payload.menuFood.id;
+
+      const cartItemIndex = state.cartItemsArr.findIndex(
+        item => item.menuFood.id === menuFoodId
+      );
+
+      if (cartItemIndex !== -1) {
+        state.cartItemsArr[cartItemIndex].totalPrice =
+          state.cartItemsArr[cartItemIndex].count *
+          state.cartItemsArr[cartItemIndex].menuFood.price;
+      }
+    },
+
     removeCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
-      state.cartItemsArr.filter(item => item.menuFood.id !== menuFoodId);
+      state.cartItemsArr = state.cartItemsArr.filter(
+        item => item.menuFood.id !== menuFoodId
+      );
     },
+
     addCountToCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
 
@@ -57,6 +74,7 @@ export const {
   addCountToCartItem,
   removeCartItem,
   setCartItem,
+  updateCartItemTotalPrice,
 } = cartSlice.actions;
 
 export const selectCartItemsArr = (state: RootState) =>
