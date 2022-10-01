@@ -55,25 +55,27 @@ export const food1: IFood = {
     "Korean tradional food Ramen with chicken Korean tradional food Ramen with chicken n with chicken Korean tradional food Ramen with chicken",
   price: 2300,
   image:
-    "https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/hjznkvic/b07fa72c-d2c1-4bf8-a97b-f4fd02aa03c6.jpg",
+    "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
 };
 
 export const food2: IFood = {
-  id: 0,
+  id: 1,
   name: "Pizza pepperoni",
   description:
     "Italian tradional food pizza with peperoni Italian tradional food pizza with peperoni Italian tradional food pizza with peperoni",
   price: 2800,
   image:
-    "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
+    "https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/hjznkvic/b07fa72c-d2c1-4bf8-a97b-f4fd02aa03c6.jpg",
 };
 
-export const listOfFood: IFood[] = [
-  food1,
-  food2,
-  food1,
-  food1,
-  food2,
-  food1,
-  food1,
-];
+export const food3: IFood = {
+  id: 2,
+  name: "Pasta carbonara",
+  description:
+    "Italian tradional food pasta with peperoni Italian tradional food pizza with peperoni Italian tradional food pizza with peperoni",
+  price: 2100,
+  image:
+    "https://images.immediate.co.uk/production/volatile/sites/30/2021/04/Pasta-alla-vodka-f1d2e1c.jpg",
+};
+
+export const listOfFood: IFood[] = [food1, food2, food3];

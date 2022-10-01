@@ -1,8 +1,10 @@
+import { ICartItem } from "common/types/cart.type";
 import CloseSolid from "components/UI/Icons/CloseSolid";
 import MinusSolid from "components/UI/Icons/MinusSolid";
 import PlusSolid from "components/UI/Icons/PlusSolid";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
 import React, { useCallback, useEffect, useState } from "react";
+import { setCartItem } from "store/slices/cartSlice";
 import {
   closeMenuFoodModal,
   selectIsModalActive,
@@ -42,11 +44,14 @@ const MenuFoodModal = () => {
   }, []);
 
   const handleAddFoodToCart = () => {
-    console.log("food", {
+    const cartItem: ICartItem = {
       count: foodCount,
-      totalPrice,
-      menuFood: selectedFood,
-    });
+      totalPrice: totalPrice,
+      menuFood: selectedFood!,
+    };
+
+    dispatch(setCartItem(cartItem));
+    handleCloseModal();
   };
 
   return (
@@ -107,7 +112,10 @@ const MenuFoodModal = () => {
               </div>
 
               <div className="w-full">
-                <button className="w-full p-3 sm:px-5 sm:py-4 bg-black hover:bg-gray-700 duration-200 transition-all text-white rounded-lg font-normal sm:font-medium">
+                <button
+                  onClick={handleAddFoodToCart}
+                  className="w-full p-3 sm:px-5 sm:py-4 bg-black hover:bg-gray-700 duration-200 transition-all text-white rounded-lg font-normal sm:font-medium"
+                >
                   <div className="flex items-center justify-center gap-x-4">
                     <p>Add order</p>
                     <PriceWithSymbol price={totalPrice} fill="white" />

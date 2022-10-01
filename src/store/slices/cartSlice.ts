@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem } from "common/types/cart.type";
+import { ICartItem } from "common/types/cart.type";
 import { RootState } from "store/store";
 
 interface CartState {
-  cartItemsArr: CartItem[];
+  cartItemsArr: ICartItem[];
 }
 
 const initialState: CartState = {
@@ -14,31 +14,40 @@ export const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   reducers: {
-    setCartItem: (state, action: PayloadAction<CartItem>) => {
-      state.cartItemsArr.push(action.payload);
+    setCartItem: (state, action: PayloadAction<ICartItem>) => {
+      const menuFoodId = action.payload.menuFood.id;
+      const cartItemIndex = state.cartItemsArr.findIndex(
+        item => item.menuFood.id === menuFoodId
+      );
+
+      if (cartItemIndex == -1) {
+        state.cartItemsArr.push(action.payload);
+      } else {
+        state.cartItemsArr[cartItemIndex] = action.payload;
+      }
     },
-    removeCartItem: (state, action: PayloadAction<CartItem>) => {
+    removeCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
       state.cartItemsArr.filter(item => item.menuFood.id !== menuFoodId);
     },
-    addCountToCartItem: (state, action: PayloadAction<CartItem>) => {
+    addCountToCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
 
-      const cartItem = state.cartItemsArr.find(
+      const cartItemIndex = state.cartItemsArr.findIndex(
         item => item.menuFood.id === menuFoodId
       );
 
-      if (cartItem) cartItem.count += 1;
+      if (cartItemIndex !== -1) state.cartItemsArr[cartItemIndex].count += 1;
     },
 
-    substractCountOfCartItem: (state, action: PayloadAction<CartItem>) => {
+    substractCountOfCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
 
-      const cartItem = state.cartItemsArr.find(
+      const cartItemIndex = state.cartItemsArr.findIndex(
         item => item.menuFood.id === menuFoodId
       );
 
-      if (cartItem) cartItem.count -= 1;
+      if (cartItemIndex !== -1) state.cartItemsArr[cartItemIndex].count -= 1;
     },
   },
 });

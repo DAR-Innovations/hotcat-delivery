@@ -3,9 +3,8 @@ import React from "react";
 import MenuFoodListExcerpt from "./MenuFoodListExcerpt";
 
 const MenuFoodList = () => {
-  //TODO: Change key to id
-  const renderedMenuFoodExcepts = listOfFood.map((restaurant, index) => (
-    <MenuFoodListExcerpt key={index} data={restaurant} />
+  const renderedMenuFoodExcepts = listOfFood.map(item => (
+    <MenuFoodListExcerpt key={item.id} data={item} />
   ));
 
   return (

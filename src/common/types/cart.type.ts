@@ -1,6 +1,6 @@
 import { IFood } from "./food.type";
 
-export interface CartItem {
+export interface ICartItem {
   count: number;
   totalPrice: number;
   menuFood: IFood;

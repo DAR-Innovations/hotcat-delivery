@@ -64,8 +64,8 @@ const Navbar = () => {
           <picture>
             <img
               loading="lazy"
-              className="inline-block h-9 object-contain cursor-pointer"
-              src="/assets/logoWithText.png"
+              className="inline-block h-10 sm:h-14 object-contain cursor-pointer"
+              src="/assets/logoWithText2.png"
               alt="hotcat"
             />
           </picture>

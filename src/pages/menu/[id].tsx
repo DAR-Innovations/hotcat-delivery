@@ -2,6 +2,7 @@ import { koreanRestaurant } from "common/mockEntities";
 import Layout from "components/Layout/Layout";
 import MenuFoodList from "components/MenuFoodList/MenuFoodList";
 import MenuFoodModal from "components/MenuFoodList/MenuFoodModal";
+import MenuFoodOrdersList from "components/MenuFoodList/MenuFoodOrderList/MenuFoodOrdersList";
 import RestaurantList from "components/RestaurantsList/RestaurantList";
 import React from "react";
 
@@ -18,12 +19,13 @@ const RestaurantMenuPage = () => {
         </main>
 
         <div className="relative hidden sm:block sm:col-span-2 lg:col-span-1 h-full">
-          <section className="sticky top-4 h-fit min-h-[300px] p-6 px-7 bg-[#dfedf6] rounded-xl">
+          <section className="sticky top-4 h-fit min-h-[300px] p-6 px-3 border-2 border-gray-500 rounded-xl">
             <h1 className="font-semibold text-center text-xl mb-5">
               My orders
             </h1>
 
             {/*List*/}
+            <MenuFoodOrdersList />
           </section>
         </div>
       </div>

@@ -8,6 +8,7 @@ const nextConfig = {
       "www.nhmagazine.com",
       "glebekitchen.com",
       "popmenucloud.com",
+      "images.immediate.co.uk",
     ],
   },
 };
