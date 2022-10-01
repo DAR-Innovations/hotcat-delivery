@@ -48,22 +48,32 @@ export const listOfRestaurants: IRestaurant[] = [
 ];
 
 //Food menu mock
-const food: IFood = {
+export const food1: IFood = {
   id: 0,
   name: "Chicke ramen",
-  description: "Korean tradional food Ramen with chicken Korean tradional food Ramen with chicken n with chicken Korean tradional food Ramen with chicken",
+  description:
+    "Korean tradional food Ramen with chicken Korean tradional food Ramen with chicken n with chicken Korean tradional food Ramen with chicken",
   price: 2300,
+  image:
+    "https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/hjznkvic/b07fa72c-d2c1-4bf8-a97b-f4fd02aa03c6.jpg",
+};
+
+export const food2: IFood = {
+  id: 0,
+  name: "Pizza pepperoni",
+  description:
+    "Italian tradional food pizza with peperoni Italian tradional food pizza with peperoni Italian tradional food pizza with peperoni",
+  price: 2800,
   image:
     "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
 };
 
 export const listOfFood: IFood[] = [
-  food,
-  food,
-  food,
-  food,
-  food,
-  food,
-  food,
-  food,
+  food1,
+  food2,
+  food1,
+  food1,
+  food2,
+  food1,
+  food1,
 ];

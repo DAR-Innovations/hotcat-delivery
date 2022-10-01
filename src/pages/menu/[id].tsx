@@ -1,6 +1,7 @@
 import { koreanRestaurant } from "common/mockEntities";
 import Layout from "components/Layout/Layout";
 import MenuFoodList from "components/MenuFoodList/MenuFoodList";
+import MenuFoodModal from "components/MenuFoodList/MenuFoodModal";
 import RestaurantList from "components/RestaurantsList/RestaurantList";
 import React from "react";
 
@@ -26,6 +27,8 @@ const RestaurantMenuPage = () => {
           </section>
         </div>
       </div>
+
+      <MenuFoodModal />
     </Layout>
   );
 };

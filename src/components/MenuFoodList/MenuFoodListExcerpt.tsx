@@ -1,16 +1,28 @@
 import { IFood } from "common/types/food.type";
 import TengeSolid from "components/UI/Icons/TengeSolid";
 import React from "react";
+import { setSelectedMenuFoodAndOpen } from "store/slices/menuFoodModalSlice";
+
+import { useAppDispatch, useAppSelector } from "store/store";
 
 interface MenuFoodListExcerptProps {
   data: IFood;
 }
 
 const MenuFoodListExcerpt = ({ data }: MenuFoodListExcerptProps) => {
+  const dispatch = useAppDispatch();
+
   const cuttedDescription = data.description.substring(0, 40) + "...";
 
+  const handleOpenModal = () => {
+    dispatch(setSelectedMenuFoodAndOpen(data));
+  };
+
   return (
-    <div className="w-full h-[140px] lg:w-[45%] shadow-xl rounded-xl hover:scale-105 transition-all duration-400 cursor-pointer">
+    <div
+      onClick={handleOpenModal}
+      className="w-full h-[140px] lg:w-[47%] shadow-xl rounded-xl hover:scale-105 transition-all duration-400 cursor-pointer"
+    >
       <div className="h-full flex item-center gap-x-5 sm:gap-x-6">
         <div className="h-full w-[200px]">
           <picture>

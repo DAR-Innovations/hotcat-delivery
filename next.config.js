@@ -7,6 +7,7 @@ const nextConfig = {
       "media-cdn.tripadvisor.com",
       "www.nhmagazine.com",
       "glebekitchen.com",
+      "popmenucloud.com",
     ],
   },
 };

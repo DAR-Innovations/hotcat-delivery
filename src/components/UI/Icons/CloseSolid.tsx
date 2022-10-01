@@ -1,9 +1,14 @@
 import React from "react";
 import { IIconProps } from "./CartSolid";
 
-const CloseSolid = ({ className, filledColor }: IIconProps) => {
+interface CloseSolidProps extends IIconProps {
+  onClick: () => void;
+}
+
+const CloseSolid = ({ className, filledColor, onClick }: CloseSolidProps) => {
   return (
     <svg
+      onClick={onClick}
       className={className || "w-10 h-10"}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
