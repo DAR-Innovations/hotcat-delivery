@@ -1,3 +1,4 @@
+import { RegistrationDTO } from "common/dto/RegistrationDTO";
 import { PAGES_LINKS } from "common/pageLinks";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import Layout from "components/Layout/Layout";
@@ -6,9 +7,12 @@ import BackSolid from "components/UI/Icons/BackSolid";
 import { NextPage } from "next";
 import Link from "next/link";
 import Router from "next/router";
+import { registerUser } from "proxy/fetches/authApi";
 import React, { MutableRefObject, useRef, useState } from "react";
+import { useAppDispatch } from "store/store";
 
 const SignupPage: NextPage = () => {
+  const dispatch = useAppDispatch();
   const usernameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const emailRef = useRef() as MutableRefObject<HTMLInputElement>;
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -19,11 +23,11 @@ const SignupPage: NextPage = () => {
     null
   );
 
-  const handleSignupSubmit = () => {
-    const usernameValue = usernameRef.current.value || null;
-    const emailValue = emailRef.current.value || null;
-    const nameValue = nameRef.current.value || null;
-    const passwordValue = passwordRef.current.value || null;
+  const handleSignupSubmit = async () => {
+    const usernameValue = usernameRef.current.value;
+    const emailValue = emailRef.current.value;
+    const nameValue = nameRef.current.value;
+    const passwordValue = passwordRef.current.value;
 
     const formFieldsValues = [
       usernameValue,
@@ -39,12 +43,21 @@ const SignupPage: NextPage = () => {
       return setShowNotificationModal(true);
     }
 
-    console.log("username: ", usernameValue);
-    console.log("email: ", emailValue);
-    console.log("name: ", nameValue);
-    console.log("password: ", passwordValue);
+    const registrationDTO: RegistrationDTO = {
+      username: usernameValue,
+      email: emailValue,
+      name: nameValue,
+      password: passwordValue,
+    };
 
-    Router.push(PAGES_LINKS.HOME.path);
+    const isSignedUp = await registerUser(dispatch, registrationDTO);
+
+    if (isSignedUp) {
+      return Router.push(PAGES_LINKS.HOME.path);
+    } else {
+      setNotificatioMessage("Error! Try again");
+      return setShowNotificationModal(true);
+    }
   };
 
   return (

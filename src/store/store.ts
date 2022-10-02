@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import cartSliceReducaer, { cartSlice } from "./slices/cartSlice";
+import cartSliceReducer, { cartSlice } from "./slices/cartSlice";
+import authSliceReducer, { authSlice } from "./slices/authSlice";
 import menuFoodModalSliceReducer, {
   menuFoodModalSlice,
 } from "./slices/menuFoodModalSlice";
@@ -8,7 +9,8 @@ import menuFoodModalSliceReducer, {
 export const store = configureStore({
   reducer: {
     [menuFoodModalSlice.name]: menuFoodModalSliceReducer,
-    [cartSlice.name]: cartSliceReducaer,
+    [cartSlice.name]: cartSliceReducer,
+    [authSlice.name]: authSliceReducer,
   },
 });
 

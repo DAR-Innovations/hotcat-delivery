@@ -1,3 +1,4 @@
+import { LoginDTO } from "common/dto/LoginDTO";
 import { PAGES_LINKS } from "common/pageLinks";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import Layout from "components/Layout/Layout";
@@ -6,10 +7,13 @@ import BackSolid from "components/UI/Icons/BackSolid";
 import { NextPage } from "next";
 import Link from "next/link";
 import Router from "next/router";
+import { loginUser } from "proxy/fetches/authApi";
 import React, { MutableRefObject, useRef, useState } from "react";
+import { useAppDispatch } from "store/store";
 
 const LoginPage: NextPage = () => {
-  const usernameRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const dispatch = useAppDispatch();
+  const usernameOrEmailRef = useRef() as MutableRefObject<HTMLInputElement>;
   const passwordRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const [showNotificationModal, setShowNotificationModal] = useState(false);
@@ -17,11 +21,11 @@ const LoginPage: NextPage = () => {
     null
   );
 
-  const handleLoginSubmit = () => {
-    const usernameValue = usernameRef.current.value || null;
-    const passwordValue = passwordRef.current.value || null;
+  const handleLoginSubmit = async () => {
+    const usernameOrEmailValue = usernameOrEmailRef.current.value;
+    const passwordValue = passwordRef.current.value;
 
-    const formFieldsValues = [usernameValue, passwordValue];
+    const formFieldsValues = [usernameOrEmailValue, passwordValue];
 
     const isFormInputValid = formFieldsValues.every(value => value !== null);
 
@@ -30,11 +34,19 @@ const LoginPage: NextPage = () => {
       return setShowNotificationModal(true);
     }
 
-    console.log("username: ", usernameValue);
+    const loginDTO: LoginDTO = {
+      usernameOrEmail: usernameOrEmailValue,
+      password: passwordValue,
+    };
 
-    console.log("password: ", passwordValue);
+    const isLoggedin = await loginUser(dispatch, loginDTO);
 
-    Router.push(PAGES_LINKS.HOME.path);
+    if (isLoggedin) {
+      return Router.push(PAGES_LINKS.HOME.path);
+    } else {
+      setNotificatioMessage("Error! Try again");
+      return setShowNotificationModal(true);
+    }
   };
 
   return (
@@ -65,7 +77,7 @@ const LoginPage: NextPage = () => {
 
             <div className="flex flex-col gap-y-3 mt-6">
               <input
-                ref={usernameRef}
+                ref={usernameOrEmailRef}
                 type="text"
                 className="bg-transparent py-4 border-b-2 border-gray-200 text-gray-50 text-base placeholder-gray-200 rounded-none"
                 placeholder="Username/Email"

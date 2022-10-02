@@ -1,6 +1,8 @@
 import Navbar from "components/Navbar/Navbar";
 import Head from "next/head";
-import React from "react";
+import { checkAuth } from "proxy/fetches/authApi";
+import React, { useEffect } from "react";
+import { useAppDispatch } from "store/store";
 
 interface LayoutProps {
   className?: string;
@@ -16,9 +18,19 @@ const Layout = ({
   navbarIncluded = true,
 }: LayoutProps) => {
   const layoutClassName = !Boolean(className)
-    ? "container mx-auto px-3 py-1 bg-white text-black font-inter leading-none  pb-20"
+    ? "container mx-auto px-3 py-1 bg-white text-black font-inter leading-none pb-20"
     : className;
   const headerTitle = `Hotcat | ${title}`;
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const refreshToken = localStorage.getItem("refreshToken");
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken && refreshToken) {
+      checkAuth(dispatch, refreshToken);
+    }
+  }, [dispatch]);
 
   return (
     <div className="h-screen w-full overflow-x-hidden">

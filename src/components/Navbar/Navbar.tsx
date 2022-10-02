@@ -7,12 +7,16 @@ import CartSolid from "components/UI/Icons/CartSolid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { selectIsAuth } from "store/slices/authSlice";
 import { selectSizeOfCartItemsArr } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";
 import BurgerButtonHandler from "./BurgerButtonHandler";
+import ProfileNavbar from "./ProfileNavbar";
 
 const Navbar = () => {
   const cartSize = useAppSelector(selectSizeOfCartItemsArr);
+  const isAuth = useAppSelector(selectIsAuth);
+
   const [isBurgerModalActive, setBurgerModalActive] = useState(false);
   const [isProfileModalActive, setIsProfileModalActive] = useState(false);
 
@@ -58,7 +62,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex py-5 items-center justify-between">
+    <div className="relative flex py-5 items-center justify-between">
       <div>
         <Link href={PAGES_LINKS.HOME.path}>
           <picture>
@@ -96,13 +100,21 @@ const Navbar = () => {
           {cartItemsIndicator}
         </div>
         {/* Auth */}
-        <div>
-          <Link href={AUTH_PAGES_LINKS.SIGNUP.path}>
-            <p className="border-2 border-black px-6 py-2 cursor-pointer hover:bg-black hover:text-white duration-200 transition-all rounded-xl">
-              {AUTH_PAGES_LINKS.SIGNUP.name}
-            </p>
-          </Link>
-        </div>
+
+        {isAuth ? (
+          <ProfileNavbar
+            isActive={isProfileModalActive}
+            handleBtn={handleProfileModal}
+          />
+        ) : (
+          <div>
+            <Link href={AUTH_PAGES_LINKS.SIGNUP.path}>
+              <p className="border-2 border-black px-6 py-2 cursor-pointer hover:bg-black hover:text-white duration-200 transition-all rounded-xl">
+                {AUTH_PAGES_LINKS.SIGNUP.name}
+              </p>
+            </Link>
+          </div>
+        )}
 
         <BurgerButtonHandler
           isActive={isBurgerModalActive}
