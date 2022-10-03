@@ -68,7 +68,7 @@ const Navbar = () => {
           <picture>
             <img
               loading="lazy"
-              className="inline-block h-10 sm:h-14 object-contain cursor-pointer"
+              className="inline-block h-9 sm:h-13 object-contain cursor-pointer"
               src="/assets/logoWithText2.png"
               alt="hotcat"
             />
@@ -96,8 +96,12 @@ const Navbar = () => {
       <div className="flex items-center gap-x-3 sm:gap-x-7">
         {/* Cart */}
         <div className="relative cursor-pointer mr-2 sm:mr-0">
-          <CartSolid className="w-6 h-6" />
-          {cartItemsIndicator}
+          <Link href={PAGES_LINKS.CART.path}>
+            <div>
+              <CartSolid className="w-6 h-6" />
+              {cartItemsIndicator}
+            </div>
+          </Link>
         </div>
         {/* Auth */}
 

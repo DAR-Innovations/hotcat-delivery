@@ -1,3 +1,4 @@
+import { IDeliveryProvider } from "./types/deliveryProvider";
 import { IFood } from "./types/food.type";
 import { IRestaurant } from "./types/restaurant.type";
 
@@ -49,6 +50,7 @@ export const listOfRestaurants: IRestaurant[] = [
 
 //Food menu mock
 export const food1: IFood = {
+  restaurantId: 2,
   id: 0,
   name: "Chicke ramen",
   description:
@@ -59,6 +61,7 @@ export const food1: IFood = {
 };
 
 export const food2: IFood = {
+  restaurantId: 1,
   id: 1,
   name: "Pizza pepperoni",
   description:
@@ -69,6 +72,7 @@ export const food2: IFood = {
 };
 
 export const food3: IFood = {
+  restaurantId: 1,
   id: 2,
   name: "Pasta carbonara",
   description:
@@ -79,3 +83,23 @@ export const food3: IFood = {
 };
 
 export const listOfFood: IFood[] = [food1, food2, food3];
+
+//Delivery providers
+const yandexDelivery: IDeliveryProvider = {
+  id: 1,
+  name: "Yandex Delivery",
+  description: "Yandex delivery",
+  deliveryPrice: 240,
+};
+
+const woltDelivery: IDeliveryProvider = {
+  id: 2,
+  name: "Wolt Delivery",
+  description: "Wolt delivery",
+  deliveryPrice: 400,
+};
+
+export const deliveryProvidersArr: IDeliveryProvider[] = [
+  woltDelivery,
+  yandexDelivery,
+];

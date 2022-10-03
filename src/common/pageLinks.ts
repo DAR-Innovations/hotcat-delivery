@@ -10,6 +10,10 @@ export const AUTH_PAGES_LINKS = {
   SIGNUP: { name: "Sign up", path: "/signup" },
 };
 
+export const PROFILE_PAGES_LINKS = {
+  HISTORY: { name: "History", path: "/history" },
+};
+
 export const PAGES_LINKS = {
   ...NAVBAR_PAGES_LINKS,
   ...AUTH_PAGES_LINKS,

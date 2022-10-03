@@ -16,9 +16,19 @@ export const cartSlice = createSlice({
   reducers: {
     setCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
+      const restaurantId = action.payload.menuFood.restaurantId;
+
       const cartItemIndex = state.cartItemsArr.findIndex(
         item => item.menuFood.id === menuFoodId
       );
+
+      const indexOfSameRestaurantId = state.cartItemsArr.findIndex(
+        item => item.menuFood.restaurantId === restaurantId
+      );
+
+      if (state.cartItemsArr.length > 0 && indexOfSameRestaurantId === -1) {
+        return alert("Order contains other restaurant food");
+      }
 
       if (cartItemIndex === -1) {
         state.cartItemsArr.push(action.payload);
@@ -84,6 +94,21 @@ export const selectCartItemsArr = (state: RootState) =>
 
 export const selectSizeOfCartItemsArr = (state: RootState) => {
   return state.cartSlice.cartItemsArr.length;
+};
+
+export const selectTotalCountOfCart = (state: RootState) => {
+  return state.cartSlice.cartItemsArr.reduce(
+    (totalCount, item) => totalCount + item.count,
+    0
+  );
+};
+
+export const selectRestaurantIdFromCart = (state: RootState) => {
+  if (state.cartSlice.cartItemsArr.length > 0) {
+    return state.cartSlice.cartItemsArr[0].menuFood.restaurantId;
+  }
+
+  return null;
 };
 
 export const selectCartTotalPrice = (state: RootState) => {
