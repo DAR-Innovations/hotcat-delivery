@@ -14,6 +14,10 @@ export const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   reducers: {
+    setCartItemsArr: (state, action: PayloadAction<ICartItem[]>) => {
+      state.cartItemsArr = action.payload;
+    },
+
     setCartItem: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
       const restaurantId = action.payload.menuFood.restaurantId;
@@ -87,6 +91,7 @@ export const {
   removeCartItem,
   setCartItem,
   updateCartItemTotalPrice,
+  setCartItemsArr,
 } = cartSlice.actions;
 
 export const selectCartItemsArr = (state: RootState) =>

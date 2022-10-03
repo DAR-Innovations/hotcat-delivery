@@ -1,7 +1,9 @@
 import Navbar from "components/Navbar/Navbar";
 import Head from "next/head";
 import { checkAuth } from "proxy/fetches/authApi";
+import { fetchAllCartItems } from "proxy/fetches/fetchOrderList";
 import React, { useEffect } from "react";
+import { setCartItemsArr } from "store/slices/cartSlice";
 import { useAppDispatch } from "store/store";
 
 interface LayoutProps {
@@ -24,12 +26,19 @@ const Layout = ({
 
   const dispatch = useAppDispatch();
 
+  //Check auth
   useEffect(() => {
     const refreshToken = localStorage.getItem("refreshToken");
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken && refreshToken) {
       checkAuth(dispatch, refreshToken);
     }
+  }, [dispatch]);
+
+  //Check ordersList
+  useEffect(() => {
+    const cartItems = fetchAllCartItems();
+    dispatch(setCartItemsArr(cartItems));
   }, [dispatch]);
 
   return (

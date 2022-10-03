@@ -3,6 +3,12 @@ import CloseSolid from "components/UI/Icons/CloseSolid";
 import MinusSolid from "components/UI/Icons/MinusSolid";
 import PlusSolid from "components/UI/Icons/PlusSolid";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
+import {
+  fetchAddCountToCartItem,
+  fetchRemoveCartItem,
+  fetchSubstractCountOfCartItem,
+  fetchUpdateCartItemTotalPrice,
+} from "proxy/fetches/fetchOrderList";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   addCountToCartItem,
@@ -35,24 +41,29 @@ const MenuFoodOrdersListExcerpt = ({
   useEffect(() => {
     setTotalPrice(foodCount * data.menuFood.price);
     dispatch(updateCartItemTotalPrice(data));
+    fetchUpdateCartItemTotalPrice(data);
   }, [data, data.menuFood.price, dispatch, foodCount]);
 
   const handleAddCount = useCallback(() => {
     setFoodCount(prev => prev + 1);
     dispatch(addCountToCartItem(data));
+    fetchAddCountToCartItem(data);
   }, [data, dispatch]);
 
   const handleSubtractCount = useCallback(() => {
     if (foodCount === 1) {
       dispatch(removeCartItem(data));
+      fetchRemoveCartItem(data);
     } else {
       setFoodCount(prev => prev - 1);
       dispatch(substractCountOfCartItem(data));
+      fetchSubstractCountOfCartItem(data);
     }
   }, [data, dispatch, foodCount]);
 
   const handleRemoveCartItem = () => {
     dispatch(removeCartItem(data));
+    fetchRemoveCartItem(data);
   };
 
   return (

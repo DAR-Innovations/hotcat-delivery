@@ -3,6 +3,7 @@ import CloseSolid from "components/UI/Icons/CloseSolid";
 import MinusSolid from "components/UI/Icons/MinusSolid";
 import PlusSolid from "components/UI/Icons/PlusSolid";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
+import { fetchPostNewCartItem } from "proxy/fetches/fetchOrderList";
 import React, { useCallback, useEffect, useState } from "react";
 import { setCartItem } from "store/slices/cartSlice";
 import {
@@ -49,8 +50,9 @@ const MenuFoodModal = () => {
       totalPrice: totalPrice,
       menuFood: selectedFood!,
     };
-    
+
     dispatch(setCartItem(cartItem));
+    fetchPostNewCartItem(cartItem);
     handleCloseModal();
   };
 
