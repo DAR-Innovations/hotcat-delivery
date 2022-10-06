@@ -1,10 +1,16 @@
 import Navbar from "components/Navbar/Navbar";
+import NotificationModal from "components/NotificationModal/NotificationModal";
 import Head from "next/head";
 import { checkAuth } from "proxy/fetches/authApi";
 import { fetchAllCartItems } from "proxy/fetches/fetchOrderList";
 import React, { useEffect } from "react";
 import { setCartItemsArr } from "store/slices/cartSlice";
-import { useAppDispatch } from "store/store";
+import {
+  selectNotificationModalIsActive,
+  selectNotificationModalMessage,
+  selectNotificationModalType,
+} from "store/slices/notificationModalSlice";
+import { useAppDispatch, useAppSelector } from "store/store";
 
 interface LayoutProps {
   className?: string;
@@ -19,6 +25,14 @@ const Layout = ({
   className,
   navbarIncluded = true,
 }: LayoutProps) => {
+  const isNotificationModalActive = useAppSelector(
+    selectNotificationModalIsActive
+  );
+  const notificationModalMessage = useAppSelector(
+    selectNotificationModalMessage
+  );
+  const notificationModalType = useAppSelector(selectNotificationModalType);
+
   const layoutClassName = !Boolean(className)
     ? "container mx-auto px-3 py-1 bg-white text-black font-inter leading-none pb-20"
     : className;
@@ -68,6 +82,12 @@ const Layout = ({
         {navbarIncluded && <Navbar />}
         {children}
       </div>
+
+      <NotificationModal
+        isActive={isNotificationModalActive}
+        message={notificationModalMessage}
+        type={notificationModalType}
+      />
     </div>
   );
 };

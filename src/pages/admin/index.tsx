@@ -1,7 +1,6 @@
 import NewRestaurantCreator from "components/Admin/Restaurants/NewRestaurantCreator";
 import AdminRestaurant from "components/Admin/Restaurants/AdminRestaurant";
 import Layout from "components/Layout/Layout";
-import NotificationModal from "components/NotificationModal/NotificationModal";
 import { NextPage } from "next";
 import React from "react";
 

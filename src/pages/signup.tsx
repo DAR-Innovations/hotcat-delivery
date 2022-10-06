@@ -9,6 +9,7 @@ import Link from "next/link";
 import Router from "next/router";
 import { registerUser } from "proxy/fetches/authApi";
 import React, { MutableRefObject, useRef, useState } from "react";
+import { showNotificationModal } from "store/slices/notificationModalSlice";
 import { useAppDispatch } from "store/store";
 
 const SignupPage: NextPage = () => {
@@ -17,11 +18,6 @@ const SignupPage: NextPage = () => {
   const emailRef = useRef() as MutableRefObject<HTMLInputElement>;
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const passwordRef = useRef() as MutableRefObject<HTMLInputElement>;
-
-  const [showNotificationModal, setShowNotificationModal] = useState(false);
-  const [notificatioMessage, setNotificatioMessage] = useState<string | null>(
-    null
-  );
 
   const handleSignupSubmit = async () => {
     const usernameValue = usernameRef.current.value;
@@ -39,8 +35,12 @@ const SignupPage: NextPage = () => {
     const isFormInputValid = formFieldsValues.every(value => value !== null);
 
     if (!isFormInputValid) {
-      setNotificatioMessage("All fields must be filled");
-      return setShowNotificationModal(true);
+      return dispatch(
+        showNotificationModal({
+          message: "All fields must be filled",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
     }
 
     const registrationDTO: RegistrationDTO = {
@@ -55,8 +55,12 @@ const SignupPage: NextPage = () => {
     if (isSignedUp) {
       return Router.push(PAGES_LINKS.HOME.path);
     } else {
-      setNotificatioMessage("Error! Try again");
-      return setShowNotificationModal(true);
+      return dispatch(
+        showNotificationModal({
+          message: "Error! Try again",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
     }
   };
 
@@ -138,13 +142,6 @@ const SignupPage: NextPage = () => {
           </div>
         </div>
       </div>
-
-      <NotificationModal
-        isActive={showNotificationModal}
-        setShowNotificationModal={setShowNotificationModal}
-        message={notificatioMessage}
-        type={NOTIFICATION_TYPES.ERROR}
-      />
     </Layout>
   );
 };

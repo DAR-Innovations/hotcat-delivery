@@ -2,24 +2,19 @@ import { LoginDTO } from "common/dto/LoginDTO";
 import { PAGES_LINKS } from "common/pageLinks";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import Layout from "components/Layout/Layout";
-import NotificationModal from "components/NotificationModal/NotificationModal";
 import BackSolid from "components/UI/Icons/BackSolid";
 import { NextPage } from "next";
 import Link from "next/link";
 import Router from "next/router";
 import { loginUser } from "proxy/fetches/authApi";
 import React, { MutableRefObject, useRef, useState } from "react";
+import { showNotificationModal } from "store/slices/notificationModalSlice";
 import { useAppDispatch } from "store/store";
 
 const LoginPage: NextPage = () => {
   const dispatch = useAppDispatch();
   const usernameOrEmailRef = useRef() as MutableRefObject<HTMLInputElement>;
   const passwordRef = useRef() as MutableRefObject<HTMLInputElement>;
-
-  const [showNotificationModal, setShowNotificationModal] = useState(false);
-  const [notificatioMessage, setNotificatioMessage] = useState<string | null>(
-    null
-  );
 
   const handleLoginSubmit = async () => {
     const usernameOrEmailValue = usernameOrEmailRef.current.value;
@@ -30,8 +25,12 @@ const LoginPage: NextPage = () => {
     const isFormInputValid = formFieldsValues.every(value => value !== null);
 
     if (!isFormInputValid) {
-      setNotificatioMessage("All fields must be filled");
-      return setShowNotificationModal(true);
+      return dispatch(
+        showNotificationModal({
+          message: "All fields must be filled",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
     }
 
     const loginDTO: LoginDTO = {
@@ -44,8 +43,12 @@ const LoginPage: NextPage = () => {
     if (isLoggedin) {
       return Router.push(PAGES_LINKS.HOME.path);
     } else {
-      setNotificatioMessage("Error! Try again");
-      return setShowNotificationModal(true);
+      return dispatch(
+        showNotificationModal({
+          message: "Error! Try again",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
     }
   };
 
@@ -112,13 +115,6 @@ const LoginPage: NextPage = () => {
           </div>
         </div>
       </div>
-
-      <NotificationModal
-        isActive={showNotificationModal}
-        setShowNotificationModal={setShowNotificationModal}
-        message={notificatioMessage}
-        type={NOTIFICATION_TYPES.ERROR}
-      />
     </Layout>
   );
 };

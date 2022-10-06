@@ -1,10 +1,11 @@
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import React, { useCallback, useEffect } from "react";
+import { closeNotificationModal } from "store/slices/notificationModalSlice";
+import { useAppDispatch } from "store/store";
 import CloseSolid from "../UI/Icons/CloseSolid";
 
 interface NotificationModalProps {
   isActive: boolean;
-  setShowNotificationModal: (state: boolean) => void;
   type: NOTIFICATION_TYPES;
   message: string | null;
 }
@@ -17,19 +18,19 @@ const NotificationModal = ({
   type,
   message,
   isActive,
-  setShowNotificationModal,
 }: NotificationModalProps) => {
+  const dispatch = useAppDispatch();
+
   const handleModal = useCallback(() => {
-    setShowNotificationModal(false);
-  }, [setShowNotificationModal]);
+    dispatch(closeNotificationModal());
+  }, [dispatch]);
 
   useEffect(() => {
     const closeModal = setTimeout(() => {
       handleModal();
     }, NOTIFICATION_EXPIRATION_INTERVAL_IN_SECONDS);
     return () => clearTimeout(closeModal);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive]);
+  }, [handleModal, isActive]);
 
   const styleDependsOnType = `${
     isActive ? "visible opacity-100" : "invisible opacity-0"

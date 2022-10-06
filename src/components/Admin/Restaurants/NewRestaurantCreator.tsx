@@ -4,17 +4,12 @@ import NotificationModal from "components/NotificationModal/NotificationModal";
 import { useRouter } from "next/router";
 import { postNewRestaurant } from "proxy/fetches/fetchRestaurant";
 import React, { MutableRefObject, useRef, useState } from "react";
+import { showNotificationModal } from "store/slices/notificationModalSlice";
+import { useAppDispatch } from "store/store";
 
 const NewRestaurantCreator = () => {
   const router = useRouter();
-
-  const [showNotificationModal, setShowNotificationModal] = useState(false);
-  const [notificationType, setNotificationType] = useState(
-    NOTIFICATION_TYPES.ERROR
-  );
-  const [notificatioMessage, setNotificatioMessage] = useState<string | null>(
-    null
-  );
+  const dispatch = useAppDispatch();
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const hasDeliveryRef = useRef() as MutableRefObject<HTMLSelectElement>;
@@ -54,9 +49,12 @@ const NewRestaurantCreator = () => {
     const isFormInputValid = formFieldsValues.every(value => value !== null);
 
     if (!isFormInputValid) {
-      setNotificationType(NOTIFICATION_TYPES.ERROR);
-      setNotificatioMessage("All fields must be filled");
-      return setShowNotificationModal(true);
+      return dispatch(
+        showNotificationModal({
+          message: "All fields must be filled",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
     }
 
     const restaurantDTO: RestaurantDTO = {
@@ -73,13 +71,20 @@ const NewRestaurantCreator = () => {
 
     const response = await postNewRestaurant(restaurantDTO);
     if (response.status !== 200) {
-      setNotificationType(NOTIFICATION_TYPES.ERROR);
-      setNotificatioMessage("Error! Try again...");
-      return setShowNotificationModal(true);
+      return dispatch(
+        showNotificationModal({
+          message: "Error! try again",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
     } else {
-      setNotificationType(NOTIFICATION_TYPES.SUCCESS);
-      setNotificatioMessage("Success!");
-      setShowNotificationModal(true);
+      dispatch(
+        showNotificationModal({
+          message: "Success",
+          type: NOTIFICATION_TYPES.SUCCESS,
+        })
+      );
+      
       return router.reload();
     }
   };
@@ -174,13 +179,6 @@ const NewRestaurantCreator = () => {
           Create
         </button>
       </div>
-
-      <NotificationModal
-        isActive={showNotificationModal}
-        setShowNotificationModal={setShowNotificationModal}
-        message={notificatioMessage}
-        type={notificationType}
-      />
     </div>
   );
 };
