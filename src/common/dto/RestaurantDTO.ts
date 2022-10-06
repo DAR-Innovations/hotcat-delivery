@@ -1,7 +1,4 @@
-import { IMenu } from "./menu.type";
-
-export interface IRestaurant {
-  id: number;
+export interface RestaurantDTO {
   name: string;
   hasDelivery: boolean;
   deliveryTime: string;
@@ -11,5 +8,4 @@ export interface IRestaurant {
   description: string;
   image: string;
   rating: string;
-  menu: IMenu;
 }

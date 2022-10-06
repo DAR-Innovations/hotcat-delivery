@@ -14,11 +14,7 @@ interface RestaurantListExceprtProps {
 const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
   const restaurantMenuExcerptLink = `${PAGES_LINKS.MENU.path}/${data.id}`;
 
-  const restaurantDetails = [
-    data.deliveryPrice,
-    data.deliveryTime,
-    data.rating,
-  ].join("  |  ");
+  const restaurantDetails = [data.deliveryTime, data.rating].join("  |  ");
 
   return (
     <div className="w-[80%] h-[335px] sm:min-w-[200px] sm:max-w-[290px] lg:w-[280px] bg-[#ffffff] shadow-xl rounded-xl hover:scale-105 transition-all duration-400 cursor-pointer">
@@ -45,7 +41,7 @@ const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
             <div className="flex items-center gap-x-5 mt-3 truncate overflow-x-hidden">
               <p className="text-sm sm:text-base text-gray-600 flex items-center gap-2">
                 <CarSolid className="w-5 h-5" filledColor="rgb(75 85 99)" />
-                {data.deliveryPrice}
+                200
                 <TengeSolid className="w-3 h-3" filledColor="rgb(75 85 99)" />
               </p>
               <p className="text-sm sm:text-base text-gray-600">
