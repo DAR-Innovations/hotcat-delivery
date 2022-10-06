@@ -23,7 +23,6 @@ const NewRestaurantCreator = () => {
   const ratingRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleOnSubmit = async () => {
-    // const nameValue = usernameOrEmailRef.current.value;
     const nameValue = nameRef.current.value;
     const hasDeliveryValue = hasDeliveryRef.current.value;
     const deliveryTimeValue = deliveryTimeRef.current.value;
@@ -46,7 +45,11 @@ const NewRestaurantCreator = () => {
       ratingValue,
     ];
 
-    const isFormInputValid = formFieldsValues.every(value => value !== null);
+    console.log(formFieldsValues);
+
+    const isFormInputValid = formFieldsValues.every(
+      value => value !== null && value !== undefined && value != ""
+    );
 
     if (!isFormInputValid) {
       return dispatch(
@@ -70,6 +73,7 @@ const NewRestaurantCreator = () => {
     };
 
     const response = await postNewRestaurant(restaurantDTO);
+
     if (response.status !== 200) {
       return dispatch(
         showNotificationModal({
@@ -84,7 +88,7 @@ const NewRestaurantCreator = () => {
           type: NOTIFICATION_TYPES.SUCCESS,
         })
       );
-      
+
       return router.reload();
     }
   };

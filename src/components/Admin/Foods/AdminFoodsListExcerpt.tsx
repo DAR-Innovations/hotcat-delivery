@@ -1,19 +1,19 @@
+import { IMenu } from "common/types/menu.type";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
-import { IRestaurant } from "common/types/restaurant.type";
 import CloseSolid from "components/UI/Icons/CloseSolid";
 import { useRouter } from "next/router";
-import { deleteRestaurantById } from "proxy/fetches/fetchRestaurant";
+import { deleteMenuById } from "proxy/fetches/fetchMenu";
 import React from "react";
 import { showNotificationModal } from "store/slices/notificationModalSlice";
 import { useAppDispatch } from "store/store";
 
-interface RestaurantsListExcerptProps {
-  data: IRestaurant;
+interface AdminFoodsListExcerptProps {
+  data: IMenu;
 }
 
-const AdminRestaurantsListExcerpt = ({ data }: RestaurantsListExcerptProps) => {
-  const router = useRouter();
+const AdminFoodsListExcerpt = ({ data }: AdminFoodsListExcerptProps) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleOnDelete = async () => {
     const isConfirmed = confirm(
@@ -22,7 +22,7 @@ const AdminRestaurantsListExcerpt = ({ data }: RestaurantsListExcerptProps) => {
 
     if (!isConfirmed) return;
 
-    const response = await deleteRestaurantById(data.id);
+    const response = await deleteMenuById(data.id);
     if (response.status === 200) {
       router.reload();
     } else {
@@ -52,4 +52,4 @@ const AdminRestaurantsListExcerpt = ({ data }: RestaurantsListExcerptProps) => {
   );
 };
 
-export default AdminRestaurantsListExcerpt;
+export default AdminFoodsListExcerpt;
