@@ -1,26 +1,42 @@
 import { useQuery } from "@tanstack/react-query";
+import { OrderDTO } from "common/dto/OrderDTO";
+import { OrderItemDTO } from "common/dto/OrderItemDTO";
 import { deliveryProvidersArr } from "common/mockEntities";
+import { PAGES_LINKS } from "common/pageLinks";
 import { IDeliveryProvider } from "common/types/deliveryProvider";
+import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import { IRestaurant } from "common/types/restaurant.type";
 import { GetStaticProps } from "next";
+import Router from "next/router";
 import { getAllDeliveryProviders } from "proxy/fetches/fetchDeliveryProvider";
+import { clearCartInLocalStorage } from "proxy/fetches/fetchLocalStorage";
 import { getRestaurantByMenuId } from "proxy/fetches/fetchMenu";
+import { postNewOrder } from "proxy/fetches/fetchOrders";
+import { fetchUser } from "proxy/fetches/fetchUser";
 import React, { useEffect, useState } from "react";
+import { selectUserId } from "store/slices/authSlice";
 import {
+  clearCart,
+  selectCartItemsArr,
   selectCartTotalPrice,
   selectMenuIdFromCart,
   selectTotalCountOfCart,
 } from "store/slices/cartSlice";
-import { useAppSelector } from "store/store";
+import { showNotificationModal } from "store/slices/notificationModalSlice";
+import { useAppDispatch, useAppSelector } from "store/store";
 
 interface CartSidebarProps {
   initialDeliveryProviders?: IDeliveryProvider[];
 }
 
 const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
+  const cartItems = useAppSelector(selectCartItemsArr);
   const totalPriceOfItems = useAppSelector(selectCartTotalPrice);
   const menuId = useAppSelector(selectMenuIdFromCart);
   const totalCountOfCart = useAppSelector(selectTotalCountOfCart);
+  const userId = useAppSelector(selectUserId);
+
+  const dispatch = useAppDispatch();
 
   const { data: restaurant } = useQuery<IRestaurant>(
     [`restaurantWithMenuId${menuId}`],
@@ -51,7 +67,7 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
     (delivery, index) => {
       if (index === 0 && selectedDeliveryId === null) {
         setSelectedDeliveryId(delivery.id);
-        setDeliveryPrice(delivery.deliveryPrice);
+        setDeliveryPrice(delivery.price);
       }
 
       return (
@@ -75,18 +91,54 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
     }
   );
 
+  const handleOnOrder = async () => {
+    if (!userId) Router.push(PAGES_LINKS.LOGIN.path);
+
+    const orderItemsDTOList: OrderItemDTO[] = cartItems.map(item => {
+      return { count: item.count, foodId: item.menuFood.id };
+    });
+
+    const orderDTO: OrderDTO = {
+      restaurantId: restaurant?.id!,
+      deliveryProviderId: selectedDeliveryId!,
+      userId: userId!,
+      orderItemsList: orderItemsDTOList,
+    };
+
+    const response = await postNewOrder(orderDTO);
+    if (response.status === 200) {
+      dispatch(
+        showNotificationModal({
+          message: "Success!",
+          type: NOTIFICATION_TYPES.SUCCESS,
+        })
+      );
+      clearCartInLocalStorage();
+      dispatch(clearCart);
+
+      //TODO: REDIRECT USER TO STATUS
+      return;
+    } else {
+      dispatch(
+        showNotificationModal({
+          message: response.data?.message,
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
+      return;
+    }
+  };
+
   useEffect(() => {
-    const selectedDeliveryProvider = deliveryProvidersArr.find(
+    const selectedDeliveryProvider = deliveryProviders?.find(
       delivery => delivery.id === selectedDeliveryId
     );
 
     if (selectedDeliveryProvider) {
-      setDeliveryPrice(selectedDeliveryProvider?.deliveryPrice);
-      setTotalPriceOfOrder(
-        totalPriceOfItems + selectedDeliveryProvider?.deliveryPrice
-      );
+      setDeliveryPrice(selectedDeliveryProvider.price);
+      setTotalPriceOfOrder(totalPriceOfItems + selectedDeliveryProvider.price);
     }
-  }, [selectedDeliveryId, totalPriceOfItems]);
+  }, [deliveryProviders, selectedDeliveryId, totalPriceOfItems]);
 
   return (
     <div className="h-fit p-5 border-2 border-black rounded-xl flex flex-col gap-y-5">
@@ -97,13 +149,13 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
         </div>
 
         <div className="flex flex-col gap-x-2">
-          <p className="text-base text-gray-400">Delivery price</p>
-          <p className="font-normal text-base">KZT {deliveryPrice}</p>
+          <p className="text-base text-gray-400">Items count</p>
+          <p className="font-normal text-base">{totalCountOfCart}</p>
         </div>
 
         <div className="flex flex-col gap-x-2">
-          <p className="text-base text-gray-400">Items count</p>
-          <p className="font-normal text-base">{totalCountOfCart}</p>
+          <p className="text-base text-gray-400">Delivery price</p>
+          <p className="font-normal text-base">KZT {deliveryPrice}</p>
         </div>
 
         <div className="flex flex-col gap-x-2">
@@ -121,7 +173,10 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
       </div>
 
       <div>
-        <button className="w-full bg-black px-2 py-4 mt-5 text-white font-medium rounded-xl">
+        <button
+          onClick={handleOnOrder}
+          className="w-full bg-black px-2 py-4 mt-5 text-white font-medium rounded-xl"
+        >
           Order
         </button>
       </div>

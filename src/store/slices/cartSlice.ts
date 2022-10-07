@@ -87,6 +87,10 @@ export const cartSlice = createSlice({
 
       if (cartItemIndex !== -1) state.cartItemsArr[cartItemIndex].count -= 1;
     },
+
+    clearCart: state => {
+      (state.cartItemsArr = []), (state.menuId = null);
+    },
   },
 });
 
@@ -97,6 +101,7 @@ export const {
   setCartItem,
   updateCartItemTotalPrice,
   setCartItemsArr,
+  clearCart,
 } = cartSlice.actions;
 
 export const selectCartItemsArr = (state: RootState) =>

@@ -43,6 +43,10 @@ export const fetchPostNewCartItem = (cartItem: CartItemState) => {
   return itemsList;
 };
 
+export const clearCartInLocalStorage = () => {
+  localStorage.removeItem("ordersList");
+};
+
 export const fetchUpdateCartItemTotalPrice = (cartItem: ICartItem) => {
   const itemsList: CartState = getCartFromLocalStorage();
 

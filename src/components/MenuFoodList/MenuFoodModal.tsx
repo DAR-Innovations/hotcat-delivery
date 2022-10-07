@@ -3,7 +3,7 @@ import CloseSolid from "components/UI/Icons/CloseSolid";
 import MinusSolid from "components/UI/Icons/MinusSolid";
 import PlusSolid from "components/UI/Icons/PlusSolid";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
-import { fetchPostNewCartItem } from "proxy/fetches/fetchOrderList";
+import { fetchPostNewCartItem } from "proxy/fetches/fetchLocalStorage";
 import React, { useCallback, useEffect, useState } from "react";
 import { CartItemState, setCartItem } from "store/slices/cartSlice";
 import {

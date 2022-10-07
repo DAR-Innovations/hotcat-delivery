@@ -8,7 +8,7 @@ import {
   fetchRemoveCartItem,
   fetchSubstractCountOfCartItem,
   fetchUpdateCartItemTotalPrice,
-} from "proxy/fetches/fetchOrderList";
+} from "proxy/fetches/fetchLocalStorage";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   addCountToCartItem,

@@ -2,7 +2,7 @@ import Navbar from "components/Navbar/Navbar";
 import NotificationModal from "components/NotificationModal/NotificationModal";
 import Head from "next/head";
 import { checkAuth } from "proxy/fetches/authApi";
-import { fetchCart } from "proxy/fetches/fetchOrderList";
+import { fetchCart } from "proxy/fetches/fetchLocalStorage";
 import React, { useEffect } from "react";
 import { setCartItemsArr } from "store/slices/cartSlice";
 import {

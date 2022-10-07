@@ -21,7 +21,7 @@ const RestaurantMenuPage = () => {
 
   const menuId = id as string;
 
-  const { data } = useQuery<IMenu>(
+  const { data, isLoading } = useQuery<IMenu>(
     [`menuWithId${menuId}`],
     () => getMenuById(parseInt(menuId)),
     {
@@ -51,6 +51,10 @@ const RestaurantMenuPage = () => {
       Nothing here yet...
     </p>
   );
+
+  if (isLoading) {
+    return <div></div>;
+  }
 
   return (
     <Layout title="Menu">
