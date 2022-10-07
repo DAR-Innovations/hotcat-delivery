@@ -1,14 +1,27 @@
+import { useQuery } from "@tanstack/react-query";
 import { listOfRestaurants } from "common/mockEntities";
+import { IRestaurant } from "common/types/restaurant.type";
+import { GetStaticProps } from "next";
+import { getAllRestaurants } from "proxy/fetches/fetchRestaurant";
 import React from "react";
 import RestaurantListExceprt from "./RestaurantListExceprt";
 
-const RestaurantList = () => {
-  //TODO: Change key to id
-  const renderedRestaurantExcepts = listOfRestaurants.map(
-    (restaurant, index) => (
-      <RestaurantListExceprt key={index} data={restaurant} />
-    )
+interface RestaurantsListProps {
+  restaurantsList?: IRestaurant[];
+}
+
+const RestaurantList = ({ restaurantsList }: RestaurantsListProps) => {
+  const { data } = useQuery<IRestaurant[]>(
+    ["restaurantsList"],
+    getAllRestaurants,
+    {
+      initialData: restaurantsList,
+    }
   );
+  
+  const renderedRestaurantExcepts = data?.map((restaurant, index) => (
+    <RestaurantListExceprt key={index} data={restaurant} />
+  ));
 
   return (
     <div className="flex flex-wrap">
@@ -17,6 +30,11 @@ const RestaurantList = () => {
       </div>
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const restaurantsList = await getAllRestaurants();
+  return { props: { restaurantsList } };
 };
 
 export default RestaurantList;

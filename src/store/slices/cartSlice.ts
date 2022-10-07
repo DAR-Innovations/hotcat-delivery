@@ -2,11 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICartItem } from "common/types/cart.type";
 import { RootState } from "store/store";
 
-interface CartState {
+export interface CartState {
+  menuId: number | null;
   cartItemsArr: ICartItem[];
 }
 
+export interface CartItemState {
+  menuId: number | null;
+  cartItem: ICartItem;
+}
+
 const initialState: CartState = {
+  menuId: null,
   cartItemsArr: [],
 };
 
@@ -14,34 +21,32 @@ export const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   reducers: {
-    setCartItemsArr: (state, action: PayloadAction<ICartItem[]>) => {
-      state.cartItemsArr = action.payload;
+    setCartItemsArr: (state, action: PayloadAction<CartState>) => {
+      state.cartItemsArr = [...action.payload.cartItemsArr];
+      state.menuId = action.payload.menuId;
     },
 
-    setCartItem: (state, action: PayloadAction<ICartItem>) => {
-      const menuFoodId = action.payload.menuFood.id;
-      const restaurantId = action.payload.menuFood.restaurantId;
+    setCartItem: (state, action: PayloadAction<CartItemState>) => {
+      const menuFoodId = action.payload.cartItem.menuFood.id;
+      const menuId = action.payload.menuId;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
         item => item.menuFood.id === menuFoodId
       );
 
-      const indexOfSameRestaurantId = state.cartItemsArr.findIndex(
-        item => item.menuFood.restaurantId === restaurantId
-      );
-
-      if (state.cartItemsArr.length > 0 && indexOfSameRestaurantId === -1) {
+      if (state.cartItemsArr.length > 0 && state.menuId !== menuId) {
         return alert("Order contains other restaurant food");
       }
 
       if (cartItemIndex === -1) {
-        state.cartItemsArr.push(action.payload);
+        state.cartItemsArr.push(action.payload.cartItem);
       } else {
         state.cartItemsArr = state.cartItemsArr.filter(
           item => item.menuFood.id !== menuFoodId
         );
       }
     },
+
     updateCartItemTotalPrice: (state, action: PayloadAction<ICartItem>) => {
       const menuFoodId = action.payload.menuFood.id;
 
@@ -108,9 +113,9 @@ export const selectTotalCountOfCart = (state: RootState) => {
   );
 };
 
-export const selectRestaurantIdFromCart = (state: RootState) => {
+export const selectMenuIdFromCart = (state: RootState) => {
   if (state.cartSlice.cartItemsArr.length > 0) {
-    return state.cartSlice.cartItemsArr[0].menuFood.restaurantId;
+    return state.cartSlice.menuId;
   }
 
   return null;

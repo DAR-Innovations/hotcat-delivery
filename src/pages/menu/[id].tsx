@@ -1,17 +1,31 @@
-import { koreanRestaurant } from "common/mockEntities";
+import { useQuery } from "@tanstack/react-query";
+import { IMenu } from "common/types/menu.type";
+import { IRestaurant } from "common/types/restaurant.type";
 import Layout from "components/Layout/Layout";
 import MenuFoodList from "components/MenuFoodList/MenuFoodList";
 import MenuFoodModal from "components/MenuFoodList/MenuFoodModal";
 import MenuFoodOrdersList from "components/MenuFoodList/MenuFoodOrderList/MenuFoodOrdersList";
-import RestaurantList from "components/RestaurantsList/RestaurantList";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
+import { useRouter } from "next/router";
+import { getMenuById } from "proxy/fetches/fetchMenu";
 import React from "react";
 import { selectCartTotalPrice } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";
 
 const RestaurantMenuPage = () => {
-  //TODO: Get id from path and make query
-  const data = koreanRestaurant;
+  const {
+    query: { id },
+  } = useRouter();
+
+  const menuId = id as string;
+
+  const { data } = useQuery<IMenu>(
+    [`menuWithId${menuId}`],
+    () => getMenuById(parseInt(menuId)),
+    {
+      enabled: id !== null,
+    }
+  );
 
   const totalCartPrice = useAppSelector(selectCartTotalPrice);
 
@@ -38,10 +52,10 @@ const RestaurantMenuPage = () => {
 
   return (
     <Layout title="Menu">
-      <h1 className="font-semibold text-3xl py-7">{data.name}</h1>
+      <h1 className="font-semibold text-3xl py-7">{data?.name}</h1>
       <div className="grid sm:grid-cols-5 lg:grid-cols-4 gap-x-4 ">
         <main className="w-full col-span-4 sm:col-span-3 lg:col-span-3">
-          <MenuFoodList />
+          <MenuFoodList data={data} />
         </main>
 
         <div className="relative hidden sm:block sm:col-span-2 lg:col-span-1 h-full">

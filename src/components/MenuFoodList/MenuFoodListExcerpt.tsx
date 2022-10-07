@@ -1,21 +1,30 @@
 import { IFood } from "common/types/food.type";
 import TengeSolid from "components/UI/Icons/TengeSolid";
 import React from "react";
-import { setSelectedMenuFoodAndOpen } from "store/slices/menuFoodModalSlice";
+import {
+  FoodModalState,
+  setSelectedMenuFoodAndOpen,
+} from "store/slices/menuFoodModalSlice";
 
 import { useAppDispatch, useAppSelector } from "store/store";
 
 interface MenuFoodListExcerptProps {
   data: IFood;
+  menuId: number;
 }
 
-const MenuFoodListExcerpt = ({ data }: MenuFoodListExcerptProps) => {
+const MenuFoodListExcerpt = ({ data, menuId }: MenuFoodListExcerptProps) => {
   const dispatch = useAppDispatch();
 
   const cuttedDescription = data.description.substring(0, 40) + "...";
 
   const handleOpenModal = () => {
-    dispatch(setSelectedMenuFoodAndOpen(data));
+    const dto: FoodModalState = {
+      data,
+      menuId,
+    };
+
+    dispatch(setSelectedMenuFoodAndOpen(dto));
   };
 
   return (

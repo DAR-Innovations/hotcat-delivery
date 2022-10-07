@@ -1,10 +1,16 @@
 import { listOfFood } from "common/mockEntities";
+import { IFood } from "common/types/food.type";
+import { IMenu } from "common/types/menu.type";
 import React from "react";
 import MenuFoodListExcerpt from "./MenuFoodListExcerpt";
 
-const MenuFoodList = () => {
-  const renderedMenuFoodExcepts = listOfFood.map(item => (
-    <MenuFoodListExcerpt key={item.id} data={item} />
+interface MenuFoodList {
+  data: IMenu | undefined;
+}
+
+const MenuFoodList = ({ data }: MenuFoodList) => {
+  const renderedMenuFoodExcepts = data?.foodList?.map(item => (
+    <MenuFoodListExcerpt key={item.id} data={item} menuId={data.id} />
   ));
 
   return (

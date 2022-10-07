@@ -5,7 +5,7 @@ import PlusSolid from "components/UI/Icons/PlusSolid";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
 import { fetchPostNewCartItem } from "proxy/fetches/fetchOrderList";
 import React, { useCallback, useEffect, useState } from "react";
-import { setCartItem } from "store/slices/cartSlice";
+import { CartItemState, setCartItem } from "store/slices/cartSlice";
 import {
   closeMenuFoodModal,
   selectIsModalActive,
@@ -18,7 +18,7 @@ const MenuFoodModal = () => {
   const isModalActive = useAppSelector(selectIsModalActive);
   const dispatch = useAppDispatch();
 
-  const selectedFood = useAppSelector(selectSelectedMenuFood);
+  const { data: selectedFood, menuId } = useAppSelector(selectSelectedMenuFood);
   const initialPrice = selectedFood?.price || 0;
   const initialCount = 1;
 
@@ -51,8 +51,13 @@ const MenuFoodModal = () => {
       menuFood: selectedFood!,
     };
 
-    dispatch(setCartItem(cartItem));
-    fetchPostNewCartItem(cartItem);
+    const dto: CartItemState = {
+      menuId,
+      cartItem,
+    };
+
+    dispatch(setCartItem(dto));
+    fetchPostNewCartItem(dto);
     handleCloseModal();
   };
 

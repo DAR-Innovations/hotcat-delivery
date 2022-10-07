@@ -12,7 +12,7 @@ interface RestaurantListExceprtProps {
 }
 
 const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
-  const restaurantMenuExcerptLink = `${PAGES_LINKS.MENU.path}/${data.id}`;
+  const restaurantMenuExcerptLink = `${PAGES_LINKS.MENU.path}/${data.menu.id}`;
 
   const restaurantDetails = [data.deliveryTime, data.rating].join("  |  ");
 

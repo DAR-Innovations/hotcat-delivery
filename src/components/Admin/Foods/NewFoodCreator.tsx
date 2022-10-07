@@ -52,7 +52,6 @@ const NewFoodCreator = ({ data }: NewFoodCreatorProps) => {
       value => value !== null || value !== undefined || value != ""
     );
 
-    console.log(isNaN(parseInt(priceValue)));
 
     if (isNaN(parseInt(priceValue))) {
       return dispatch(

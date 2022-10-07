@@ -6,7 +6,7 @@ import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import {
   selectCartTotalPrice,
-  selectRestaurantIdFromCart,
+  selectMenuIdFromCart,
   selectSizeOfCartItemsArr,
   selectTotalCountOfCart,
   selectTotalPriceOfCartItem,
@@ -16,7 +16,7 @@ import { useAppSelector } from "store/store";
 const CartPage: NextPage = () => {
   const cartItemsAmount = useAppSelector(selectSizeOfCartItemsArr);
   const totalPriceOfItems = useAppSelector(selectCartTotalPrice);
-  const restaurantId = useAppSelector(selectRestaurantIdFromCart);
+  const menuId = useAppSelector(selectMenuIdFromCart);
   const totalCountOfCart = useAppSelector(selectTotalCountOfCart);
 
   const [selectedDeliveryId, setSelectedDeliveryId] = useState<number | null>(
@@ -91,7 +91,7 @@ const CartPage: NextPage = () => {
                 <div className="flex flex-col gap-x-2">
                   <p className="text-base text-gray-400">Restaurant</p>
                   <p className="font-normal text-base">
-                    Mexican Restaurant {restaurantId}
+                    Mexican Restaurant
                   </p>
                 </div>
 

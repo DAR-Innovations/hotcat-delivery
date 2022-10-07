@@ -14,7 +14,7 @@ const AdminRestaurantsList: FC<RestaurantsListProps> = ({
   restaurantsList,
 }) => {
   const { data } = useQuery<IRestaurant[]>(
-    ["restaurantsListAdmin"],
+    ["restaurantsList"],
     getAllRestaurants,
     {
       initialData: restaurantsList,
