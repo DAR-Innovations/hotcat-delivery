@@ -45,16 +45,22 @@ const NewRestaurantCreator = () => {
       ratingValue,
     ];
 
-    console.log(formFieldsValues);
-
     const isFormInputValid = formFieldsValues.every(
       value => value !== null && value !== undefined && value != ""
     );
 
+    if (parseInt(ratingValue) > 10 || parseInt(ratingValue) < 10) {
+      return dispatch(
+        showNotificationModal({
+          message: "Invalid rating",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
+    }
     if (!isFormInputValid) {
       return dispatch(
         showNotificationModal({
-          message: "All fields must be filled",
+          message: "Missing some attributes",
           type: NOTIFICATION_TYPES.ERROR,
         })
       );
@@ -169,7 +175,9 @@ const NewRestaurantCreator = () => {
 
         <input
           ref={ratingRef}
-          type="text"
+          type="number"
+          max="10"
+          min="0"
           placeholder="Rating"
           className="w-full border-2 border-gray-200 rounded-lg px-4 py-3"
         />

@@ -4,6 +4,7 @@ import Layout from "components/Layout/Layout";
 import { NextPage } from "next";
 import React from "react";
 import AdminFoods from "components/Admin/Foods/AdminFoods";
+import AdminDeliveryProvider from "components/Admin/DeliveryProviders/AdminDeliveryProvider";
 
 const AdminHomePage: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const AdminHomePage: NextPage = () => {
       <main className="w-full flex flex-col gap-8 my-8">
         <AdminRestaurant />
         <AdminFoods />
+        <AdminDeliveryProvider />
       </main>
     </Layout>
   );

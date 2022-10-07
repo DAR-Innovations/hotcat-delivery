@@ -17,7 +17,7 @@ const AdminFoods = ({ menusList }: AdminFoodsProps) => {
 
   return (
     <div>
-      <h1 className="text-lg font-semibold mb-3">Menus and Foods</h1>
+      <h1 className="text-lg font-semibold mb-3 px-3">Menus and Foods</h1>
 
       <div className="grid grid-cols-3 gap-5 justify-between">
         <div className="col-span-3 sm:col-span-2">
