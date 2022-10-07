@@ -25,11 +25,12 @@ export const fetchPostNewCartItem = (cartItem: CartItemState) => {
     item => item.menuFood.id === menuFoodId
   );
 
-  if (itemsList.cartItemsArr.length > 0 && menuId !== cartItem.menuId) {
+  if (itemsList.cartItemsArr.length > 0 && menuId !== itemsList.menuId) {
     return;
   }
 
   if (cartItemIndex === -1) {
+    itemsList.menuId = menuId;
     itemsList.cartItemsArr.push(cartItem.cartItem);
   } else {
     itemsList.cartItemsArr = itemsList.cartItemsArr.filter(

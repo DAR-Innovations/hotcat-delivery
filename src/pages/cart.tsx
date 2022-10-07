@@ -1,15 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import { deliveryProvidersArr } from "common/mockEntities";
 import { PAGES_LINKS } from "common/pageLinks";
+import { IRestaurant } from "common/types/restaurant.type";
 import CartMenuFoodList from "components/CartMenuFoodList/CartMenuFoodList";
 import Layout from "components/Layout/Layout";
 import { NextPage } from "next";
+import { getRestaurantByMenuId } from "proxy/fetches/fetchMenu";
 import React, { useEffect, useState } from "react";
 import {
   selectCartTotalPrice,
   selectMenuIdFromCart,
   selectSizeOfCartItemsArr,
   selectTotalCountOfCart,
-  selectTotalPriceOfCartItem,
 } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";
 
@@ -18,6 +20,14 @@ const CartPage: NextPage = () => {
   const totalPriceOfItems = useAppSelector(selectCartTotalPrice);
   const menuId = useAppSelector(selectMenuIdFromCart);
   const totalCountOfCart = useAppSelector(selectTotalCountOfCart);
+
+  const { data: restaurant } = useQuery<IRestaurant>(
+    [`restaurantWithMenuId${menuId}`],
+    () => getRestaurantByMenuId(menuId!),
+    {
+      enabled: menuId !== null,
+    }
+  );
 
   const [selectedDeliveryId, setSelectedDeliveryId] = useState<number | null>(
     null
@@ -90,9 +100,7 @@ const CartPage: NextPage = () => {
               <div className="flex flex-col gap-y-3">
                 <div className="flex flex-col gap-x-2">
                   <p className="text-base text-gray-400">Restaurant</p>
-                  <p className="font-normal text-base">
-                    Mexican Restaurant
-                  </p>
+                  <p className="font-normal text-base">{restaurant?.name}</p>
                 </div>
 
                 <div className="flex flex-col gap-x-2">

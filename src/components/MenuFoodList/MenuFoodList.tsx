@@ -1,5 +1,3 @@
-import { listOfFood } from "common/mockEntities";
-import { IFood } from "common/types/food.type";
 import { IMenu } from "common/types/menu.type";
 import React from "react";
 import MenuFoodListExcerpt from "./MenuFoodListExcerpt";
