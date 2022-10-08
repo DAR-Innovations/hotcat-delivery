@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: [
+      "images.unsplash.com",
       "media-cdn.tripadvisor.com",
       "www.nhmagazine.com",
       "glebekitchen.com",

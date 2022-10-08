@@ -23,6 +23,7 @@ const AdminDeliveryProviderList: FC<AdminDeliveryProviderListProps> = ({
   const renderedDeliveryProviders = data?.map(delivery => (
     <AdminDeliveryProviderListExcerpt key={delivery.id} data={delivery} />
   ));
+  
   return (
     <div className="px-6 py-5 border-2 border-gray-400 rounded-xl">
       <div className="flex flex-col gap-y-4">{renderedDeliveryProviders}</div>

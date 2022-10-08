@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import React from "react";
 import AdminFoods from "components/Admin/Foods/AdminFoods";
 import AdminDeliveryProvider from "components/Admin/DeliveryProviders/AdminDeliveryProvider";
+import AdminPaymentMethods from "components/Admin/PaymentMethods/AdminPaymentMethods";
 
 const AdminHomePage: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const AdminHomePage: NextPage = () => {
         <AdminRestaurant />
         <AdminFoods />
         <AdminDeliveryProvider />
+        <AdminPaymentMethods />
       </main>
     </Layout>
   );
