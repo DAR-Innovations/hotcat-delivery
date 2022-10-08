@@ -90,7 +90,7 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
   );
 
   const handleOnOrder = async () => {
-    if (!userId) Router.push(PAGES_LINKS.LOGIN.path);
+    if (!userId) return Router.push(PAGES_LINKS.LOGIN.path);
 
     const orderItemsDTOList: OrderItemDTO[] = cartItems.map(item => {
       return { count: item.count, foodId: item.food.id };
@@ -114,8 +114,7 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
       clearCartInLocalStorage();
       dispatch(clearCart);
 
-      //TODO: REDIRECT USER TO STATUS
-      return;
+      return Router.push(`${PAGES_LINKS.CART.path}/${response.data.id}`);
     } else {
       dispatch(
         showNotificationModal({
