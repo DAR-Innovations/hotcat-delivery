@@ -21,6 +21,12 @@ export const getOrderById = async (orderId: number) => {
   return response.data;
 };
 
+export const getRecentOrders = async () => {
+  const response = await $api.get(`${API_URL}/orders/recent`);
+
+  return response.data as IOrder[];
+};
+
 export const fillPaymentAndDeliveryDetails = async (
   orderId: number,
   orderDetialsDto: OrderDetailsDTO
@@ -31,4 +37,14 @@ export const fillPaymentAndDeliveryDetails = async (
   );
 
   return { status: response.status, data: response.data };
+};
+
+export const changeCookingStatusOfOrder = async (orderId: number) => {
+  const response = await axios.post(`${API_URL}/orders/${orderId}/cooked`);
+  return { status: response.status, responseData: response.data };
+};
+
+export const changeDeliveryStatusOfOrder = async (orderId: number) => {
+  const response = await axios.post(`${API_URL}/orders/${orderId}/delivered`);
+  return { status: response.status, responseData: response.data };
 };

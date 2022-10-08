@@ -6,19 +6,15 @@ import React from "react";
 import AdminFoods from "components/Admin/Foods/AdminFoods";
 import AdminDeliveryProvider from "components/Admin/DeliveryProviders/AdminDeliveryProvider";
 import AdminPaymentMethods from "components/Admin/PaymentMethods/AdminPaymentMethods";
+import Link from "next/link";
+import { ADMIN_PAGES_LINKS } from "common/pageLinks";
+import { useRouter } from "next/router";
+import AdminNavbar from "components/Navbar/AdminNavbar";
 
 const AdminHomePage: NextPage = () => {
   return (
-    <Layout title="Admin">
-      <h1 className="w-full py-8 px-7 font-semibold text-lg rounded-lg bg-gray-200 my-5">
-        Admin dashboard
-      </h1>
-      <main className="w-full flex flex-col gap-8 my-8">
-        <AdminRestaurant />
-        <AdminFoods />
-        <AdminDeliveryProvider />
-        <AdminPaymentMethods />
-      </main>
+    <Layout title="Admin Dashboard">
+      <AdminNavbar />
     </Layout>
   );
 };

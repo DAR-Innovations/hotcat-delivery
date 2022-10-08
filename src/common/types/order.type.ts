@@ -11,4 +11,6 @@ export interface IOrder {
   appUser: IUser;
   orderDate: string;
   totalPrice: number;
+  isCooked: boolean;
+  isDelivered: boolean;
 }
