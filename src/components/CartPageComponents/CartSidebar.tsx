@@ -6,6 +6,7 @@ import { IDeliveryProvider } from "common/types/deliveryProvider";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import { IRestaurant } from "common/types/restaurant.type";
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import Router from "next/router";
 import { getAllDeliveryProviders } from "proxy/fetches/fetchDeliveryProvider";
 import { clearCartInLocalStorage } from "proxy/fetches/fetchLocalStorage";
@@ -105,12 +106,6 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
 
     const response = await postNewOrder(orderDTO);
     if (response.status === 200) {
-      dispatch(
-        showNotificationModal({
-          message: "Success!",
-          type: NOTIFICATION_TYPES.SUCCESS,
-        })
-      );
       clearCartInLocalStorage();
       dispatch(clearCart);
 
@@ -174,7 +169,7 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
           onClick={handleOnOrder}
           className="w-full bg-black px-2 py-4 mt-5 text-white font-medium rounded-xl"
         >
-          Order
+          Checkout
         </button>
       </div>
     </div>

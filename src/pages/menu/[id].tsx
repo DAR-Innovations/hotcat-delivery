@@ -40,9 +40,11 @@ const RestaurantMenuPage = () => {
 
   const renderedOrderButton = totalCartPrice !== 0 && (
     <div className="mt-20 w-full">
-      <button className="w-full bg-black text-white px-2 py-3 rounded-xl">
-        Order
-      </button>
+      <Link href={PAGES_LINKS.CART.path}>
+        <button className="w-full bg-black text-white px-2 py-3 rounded-xl">
+          Checkout
+        </button>
+      </Link>
     </div>
   );
 
