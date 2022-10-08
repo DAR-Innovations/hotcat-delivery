@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { listOfRestaurants } from "common/mockEntities";
 import { IRestaurant } from "common/types/restaurant.type";
 import { GetStaticProps } from "next";
 import { getAllRestaurants } from "proxy/fetches/fetchRestaurant";

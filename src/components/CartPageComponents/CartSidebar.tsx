@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { OrderDTO } from "common/dto/OrderDTO";
 import { OrderItemDTO } from "common/dto/OrderItemDTO";
-import { deliveryProvidersArr } from "common/mockEntities";
 import { PAGES_LINKS } from "common/pageLinks";
 import { IDeliveryProvider } from "common/types/deliveryProvider";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
@@ -12,7 +11,6 @@ import { getAllDeliveryProviders } from "proxy/fetches/fetchDeliveryProvider";
 import { clearCartInLocalStorage } from "proxy/fetches/fetchLocalStorage";
 import { getRestaurantByMenuId } from "proxy/fetches/fetchMenu";
 import { postNewOrder } from "proxy/fetches/fetchOrders";
-import { fetchUser } from "proxy/fetches/fetchUser";
 import React, { useEffect, useState } from "react";
 import { selectUserId } from "store/slices/authSlice";
 import {
@@ -95,7 +93,7 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
     if (!userId) Router.push(PAGES_LINKS.LOGIN.path);
 
     const orderItemsDTOList: OrderItemDTO[] = cartItems.map(item => {
-      return { count: item.count, foodId: item.menuFood.id };
+      return { count: item.count, foodId: item.food.id };
     });
 
     const orderDTO: OrderDTO = {

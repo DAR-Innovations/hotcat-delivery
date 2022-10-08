@@ -48,7 +48,7 @@ const MenuFoodModal = () => {
     const cartItem: ICartItem = {
       count: foodCount,
       totalPrice: totalPrice,
-      menuFood: selectedFood!,
+      food: selectedFood!,
     };
 
     const dto: CartItemState = {

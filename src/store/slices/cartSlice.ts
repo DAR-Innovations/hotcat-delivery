@@ -27,11 +27,11 @@ export const cartSlice = createSlice({
     },
 
     setCartItem: (state, action: PayloadAction<CartItemState>) => {
-      const menuFoodId = action.payload.cartItem.menuFood.id;
+      const menuFoodId = action.payload.cartItem.food.id;
       const menuId = action.payload.menuId;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
-        item => item.menuFood.id === menuFoodId
+        item => item.food.id === menuFoodId
       );
 
       if (state.cartItemsArr.length > 0 && state.menuId !== menuId) {
@@ -42,47 +42,47 @@ export const cartSlice = createSlice({
         state.cartItemsArr.push(action.payload.cartItem);
       } else {
         state.cartItemsArr = state.cartItemsArr.filter(
-          item => item.menuFood.id !== menuFoodId
+          item => item.food.id !== menuFoodId
         );
       }
     },
 
     updateCartItemTotalPrice: (state, action: PayloadAction<ICartItem>) => {
-      const menuFoodId = action.payload.menuFood.id;
+      const menuFoodId = action.payload.food.id;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
-        item => item.menuFood.id === menuFoodId
+        item => item.food.id === menuFoodId
       );
 
       if (cartItemIndex !== -1) {
         state.cartItemsArr[cartItemIndex].totalPrice =
           state.cartItemsArr[cartItemIndex].count *
-          state.cartItemsArr[cartItemIndex].menuFood.price;
+          state.cartItemsArr[cartItemIndex].food.price;
       }
     },
 
     removeCartItem: (state, action: PayloadAction<ICartItem>) => {
-      const menuFoodId = action.payload.menuFood.id;
+      const menuFoodId = action.payload.food.id;
       state.cartItemsArr = state.cartItemsArr.filter(
-        item => item.menuFood.id !== menuFoodId
+        item => item.food.id !== menuFoodId
       );
     },
 
     addCountToCartItem: (state, action: PayloadAction<ICartItem>) => {
-      const menuFoodId = action.payload.menuFood.id;
+      const menuFoodId = action.payload.food.id;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
-        item => item.menuFood.id === menuFoodId
+        item => item.food.id === menuFoodId
       );
 
       if (cartItemIndex !== -1) state.cartItemsArr[cartItemIndex].count += 1;
     },
 
     substractCountOfCartItem: (state, action: PayloadAction<ICartItem>) => {
-      const menuFoodId = action.payload.menuFood.id;
+      const menuFoodId = action.payload.food.id;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
-        item => item.menuFood.id === menuFoodId
+        item => item.food.id === menuFoodId
       );
 
       if (cartItemIndex !== -1) state.cartItemsArr[cartItemIndex].count -= 1;
@@ -137,10 +137,10 @@ export const selectCountOfCartItem = (
   state: RootState,
   cartItem: ICartItem
 ) => {
-  const menuFoodId = cartItem.menuFood.id;
+  const menuFoodId = cartItem.food.id;
 
   const cartItemIndex = state.cartSlice.cartItemsArr.findIndex(
-    item => item.menuFood.id === menuFoodId
+    item => item.food.id === menuFoodId
   );
 
   return state.cartSlice.cartItemsArr[cartItemIndex].count;
@@ -150,10 +150,10 @@ export const selectTotalPriceOfCartItem = (
   state: RootState,
   cartItem: ICartItem
 ) => {
-  const menuFoodId = cartItem.menuFood.id;
+  const menuFoodId = cartItem.food.id;
 
   const cartItemIndex = state.cartSlice.cartItemsArr.findIndex(
-    item => item.menuFood.id === menuFoodId
+    item => item.food.id === menuFoodId
   );
 
   return state.cartSlice.cartItemsArr[cartItemIndex].totalPrice;

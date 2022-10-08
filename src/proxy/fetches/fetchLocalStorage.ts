@@ -18,11 +18,11 @@ export const fetchCart = () => {
 export const fetchPostNewCartItem = (cartItem: CartItemState) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
-  const menuFoodId = cartItem.cartItem.menuFood.id;
+  const menuFoodId = cartItem.cartItem.food.id;
   const menuId = cartItem.menuId;
 
   const cartItemIndex = itemsList.cartItemsArr.findIndex(
-    item => item.menuFood.id === menuFoodId
+    item => item.food.id === menuFoodId
   );
 
   if (itemsList.cartItemsArr.length > 0 && menuId !== itemsList.menuId) {
@@ -34,7 +34,7 @@ export const fetchPostNewCartItem = (cartItem: CartItemState) => {
     itemsList.cartItemsArr.push(cartItem.cartItem);
   } else {
     itemsList.cartItemsArr = itemsList.cartItemsArr.filter(
-      item => item.menuFood.id !== menuFoodId
+      item => item.food.id !== menuFoodId
     );
   }
 
@@ -50,16 +50,16 @@ export const clearCartInLocalStorage = () => {
 export const fetchUpdateCartItemTotalPrice = (cartItem: ICartItem) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
-  const menuFoodId = cartItem.menuFood.id;
+  const menuFoodId = cartItem.food.id;
 
   const cartItemIndex = itemsList.cartItemsArr.findIndex(
-    item => item.menuFood.id === menuFoodId
+    item => item.food.id === menuFoodId
   );
 
   if (cartItemIndex !== -1) {
     itemsList.cartItemsArr[cartItemIndex].totalPrice =
       itemsList.cartItemsArr[cartItemIndex].count *
-      itemsList.cartItemsArr[cartItemIndex].menuFood.price;
+      itemsList.cartItemsArr[cartItemIndex].food.price;
   }
 
   localStorage.setItem("ordersList", JSON.stringify(itemsList));
@@ -70,9 +70,9 @@ export const fetchUpdateCartItemTotalPrice = (cartItem: ICartItem) => {
 export const fetchRemoveCartItem = (cartItem: ICartItem) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
-  const menuFoodId = cartItem.menuFood.id;
+  const menuFoodId = cartItem.food.id;
   itemsList.cartItemsArr = itemsList.cartItemsArr.filter(
-    item => item.menuFood.id !== menuFoodId
+    item => item.food.id !== menuFoodId
   );
 
   localStorage.setItem("ordersList", JSON.stringify(itemsList));
@@ -83,10 +83,10 @@ export const fetchRemoveCartItem = (cartItem: ICartItem) => {
 export const fetchAddCountToCartItem = (cartItem: ICartItem) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
-  const menuFoodId = cartItem.menuFood.id;
+  const menuFoodId = cartItem.food.id;
 
   const cartItemIndex = itemsList.cartItemsArr.findIndex(
-    item => item.menuFood.id === menuFoodId
+    item => item.food.id === menuFoodId
   );
 
   if (cartItemIndex !== -1) itemsList.cartItemsArr[cartItemIndex].count += 1;
@@ -101,10 +101,10 @@ export const fetchSubstractCountOfCartItem = (cartItem: ICartItem) => {
     JSON.parse(localStorage.getItem("ordersList") || "[]") ||
     ([] as ICartItem[]);
 
-  const menuFoodId = cartItem.menuFood.id;
+  const menuFoodId = cartItem.food.id;
 
   const cartItemIndex = itemsList.cartItemsArr.findIndex(
-    item => item.menuFood.id === menuFoodId
+    item => item.food.id === menuFoodId
   );
 
   if (cartItemIndex !== -1) itemsList.cartItemsArr[cartItemIndex].count -= 1;

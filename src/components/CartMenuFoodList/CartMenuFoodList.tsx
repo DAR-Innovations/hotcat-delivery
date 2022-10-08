@@ -7,7 +7,7 @@ const CartMenuFoodList = () => {
   const cartItems = useAppSelector(selectCartItemsArr);
 
   const renderedMenuFoodOrdersExcerpt = cartItems.map(item => (
-    <CartMenuFoodListExcerpt key={item.menuFood.id} data={item} />
+    <CartMenuFoodListExcerpt key={item.food.id} data={item} />
   ));
   return (
     <div className="flex flex-col gap-y-3">{renderedMenuFoodOrdersExcerpt}</div>

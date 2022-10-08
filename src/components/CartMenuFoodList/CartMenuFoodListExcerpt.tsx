@@ -37,10 +37,10 @@ const CartMenuFoodListExcerpt = ({ data }: MenuFoodOrdersListExcerptProps) => {
   const [totalPrice, setTotalPrice] = useState(totalProceItemCount);
 
   useEffect(() => {
-    setTotalPrice(foodCount * data.menuFood.price);
+    setTotalPrice(foodCount * data.food.price);
     dispatch(updateCartItemTotalPrice(data));
     fetchUpdateCartItemTotalPrice(data);
-  }, [data, data.menuFood.price, dispatch, foodCount]);
+  }, [data, data.food.price, dispatch, foodCount]);
 
   const handleAddCount = useCallback(() => {
     setFoodCount(prev => prev + 1);
@@ -74,7 +74,7 @@ const CartMenuFoodListExcerpt = ({ data }: MenuFoodOrdersListExcerptProps) => {
           />
 
           <h1 className="font-semibold text-lg truncate overflow-x-hidden">
-            {data.menuFood.name}
+            {data.food.name}
           </h1>
         </div>
 

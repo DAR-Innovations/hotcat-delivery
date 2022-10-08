@@ -38,9 +38,10 @@ const AdminFoodsListExcerpt = ({ data }: AdminFoodsListExcerptProps) => {
 
   return (
     <div className="w-full flex justify-between items-center">
-      <div className="flex items-center gap-x-3">
+      <div className="flex items-center gap-x-4">
         <p className="font-semibold">{data.name}</p>
         <p>id: {data.id}</p>
+        <p>foods: {data.foodList.length}</p>
       </div>
       <div>
         <CloseSolid

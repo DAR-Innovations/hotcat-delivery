@@ -1,12 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { deliveryProvidersArr } from "common/mockEntities";
 import { PAGES_LINKS } from "common/pageLinks";
-import { IRestaurant } from "common/types/restaurant.type";
 import CartMenuFoodList from "components/CartMenuFoodList/CartMenuFoodList";
 import CartSidebar from "components/CartPageComponents/CartSidebar";
 import Layout from "components/Layout/Layout";
-import { GetStaticProps, NextPage } from "next";
-import { getAllDeliveryProviders } from "proxy/fetches/fetchDeliveryProvider";
+import { NextPage } from "next";
 import React from "react";
 import { selectSizeOfCartItemsArr } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";

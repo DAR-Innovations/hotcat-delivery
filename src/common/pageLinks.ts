@@ -11,11 +11,12 @@ export const AUTH_PAGES_LINKS = {
 };
 
 export const PROFILE_PAGES_LINKS = {
-  HISTORY: { name: "History", path: "/history" },
+  ORDERS: { name: "Orders", path: "/profile/orders" },
 };
 
 export const PAGES_LINKS = {
   ...NAVBAR_PAGES_LINKS,
   ...AUTH_PAGES_LINKS,
+  ...PROFILE_PAGES_LINKS,
   CART: { name: "Cart", path: "/cart" },
 };

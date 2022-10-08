@@ -9,7 +9,7 @@ import AdminDeliveryProvider from "components/Admin/DeliveryProviders/AdminDeliv
 const AdminHomePage: NextPage = () => {
   return (
     <Layout title="Admin">
-      <h1 className="w-full py-5 px-5 font-semibold text-lg rounded-lg bg-gray-200 my-5">
+      <h1 className="w-full py-8 px-7 font-semibold text-lg rounded-lg bg-gray-200 my-5">
         Admin dashboard
       </h1>
       <main className="w-full flex flex-col gap-8 my-8">
