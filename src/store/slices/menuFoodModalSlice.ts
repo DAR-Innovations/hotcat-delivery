@@ -42,7 +42,7 @@ export const menuFoodModalSlice = createSlice({
 export const { closeMenuFoodModal, setSelectedMenuFoodAndOpen } =
   menuFoodModalSlice.actions;
 
-export const selectIsModalActive = (state: RootState) =>
+export const selectIsFoodModalActive = (state: RootState) =>
   state.menuFoodModalSlice.isModalActive;
 
 export const selectSelectedMenuFood = (state: RootState) => {

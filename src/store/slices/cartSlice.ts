@@ -40,6 +40,7 @@ export const cartSlice = createSlice({
 
       if (cartItemIndex === -1) {
         state.cartItemsArr.push(action.payload.cartItem);
+        state.menuId = menuId;
       } else {
         state.cartItemsArr = state.cartItemsArr.filter(
           item => item.food.id !== menuFoodId

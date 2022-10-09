@@ -13,7 +13,7 @@ const AdminOrdersList = ({ recentOrders }: AdminOrdersListProps) => {
   const { data: orders } = useQuery<IOrder[]>(
     ["recentOrderList"],
     getRecentOrders,
-    { initialData: recentOrders }
+    { initialData: recentOrders, refetchInterval: 5000 }
   );
 
   const renderedOrders = orders?.map(order => (

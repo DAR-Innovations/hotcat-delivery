@@ -1,6 +1,7 @@
 import axios from "axios";
 import { OrderDetailsDTO } from "common/dto/OrderDetialsDTO";
 import { OrderDTO } from "common/dto/OrderDTO";
+import { UserOrderStatusDTO } from "common/dto/UserOrderStatusDTO";
 import { IOrder } from "common/types/order.type";
 import $api, { API_URL } from "proxy";
 
@@ -48,3 +49,9 @@ export const changeDeliveryStatusOfOrder = async (orderId: number) => {
   const response = await axios.post(`${API_URL}/orders/${orderId}/delivered`);
   return { status: response.status, responseData: response.data };
 };
+
+export const checkIfOrderIsActiveByUserId = async (userId: number) => {
+  const response = await axios.get(`${API_URL}/orders/active/user/${userId}`);
+  return response.data as UserOrderStatusDTO;
+};
+

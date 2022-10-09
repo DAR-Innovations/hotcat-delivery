@@ -2,6 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import cartSliceReducer, { cartSlice } from "./slices/cartSlice";
 import authSliceReducer, { authSlice } from "./slices/authSlice";
+import userOrderStatusModalReducer, {
+  userOrderStatusModalSlice,
+} from "./slices/userOrderStatusModalSlice";
+
 import notificationModalSliceReducer, {
   notificationModalSlice,
 } from "./slices/notificationModalSlice";
@@ -16,6 +20,7 @@ export const store = configureStore({
     [cartSlice.name]: cartSliceReducer,
     [authSlice.name]: authSliceReducer,
     [notificationModalSlice.name]: notificationModalSliceReducer,
+    [userOrderStatusModalSlice.name]: userOrderStatusModalReducer,
   },
 });
 

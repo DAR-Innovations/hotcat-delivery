@@ -8,14 +8,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import { CartItemState, setCartItem } from "store/slices/cartSlice";
 import {
   closeMenuFoodModal,
-  selectIsModalActive,
+  selectIsFoodModalActive,
   selectSelectedMenuFood,
 } from "store/slices/menuFoodModalSlice";
 
 import { useAppDispatch, useAppSelector } from "store/store";
 
 const MenuFoodModal = () => {
-  const isModalActive = useAppSelector(selectIsModalActive);
+  const isModalActive = useAppSelector(selectIsFoodModalActive);
   const dispatch = useAppDispatch();
 
   const { data: selectedFood, menuId } = useAppSelector(selectSelectedMenuFood);
