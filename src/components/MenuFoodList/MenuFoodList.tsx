@@ -11,11 +11,9 @@ const MenuFoodList = ({ data }: MenuFoodList) => {
     <MenuFoodListExcerpt key={item.id} data={item} menuId={data.id} />
   ));
 
-  //TODO: CHANGE UI OF FOOD CARDS
-
   return (
     <div className="flex flex-wrap">
-      <div className="flex flex-wrap items-center gap-6 sm:gap-x-8 sm:gap-y-6 justify-center sm:justify-start">
+      <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
         {renderedMenuFoodExcepts}
       </div>
     </div>

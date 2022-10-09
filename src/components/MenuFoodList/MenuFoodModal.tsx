@@ -73,7 +73,7 @@ const MenuFoodModal = () => {
           onClick={e => e.stopPropagation()}
           className={`${
             isModalActive ? "visible opacity-100" : "invisible opacity-0"
-          } max-w-[360px] sm:max-w-[500px] bg-white rounded-xl relative`}
+          } min-w-[360px] sm:w-[430px] bg-white rounded-xl relative`}
         >
           <div>
             <picture>
