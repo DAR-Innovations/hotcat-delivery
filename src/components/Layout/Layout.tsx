@@ -4,7 +4,7 @@ import NotificationModal from "components/NotificationModal/NotificationModal";
 import UserOrderStatus from "components/UserOrderStatus/UserOrderStatus";
 import UserOrderStatusModal from "components/UserOrderStatus/UserOrderStatusModal";
 import Head from "next/head";
-import { checkAuth } from "proxy/fetches/authApi";
+import { checkAuth, getAccessAndRefreshToken } from "proxy/fetches/authApi";
 import { fetchCart } from "proxy/fetches/fetchLocalStorage";
 import { checkIfOrderIsActiveByUserId } from "proxy/fetches/fetchOrders";
 import React, { useEffect, useState } from "react";
@@ -68,8 +68,7 @@ const Layout = ({
 
   //Check auth
   useEffect(() => {
-    const refreshToken = localStorage.getItem("refreshToken");
-    const accessToken = localStorage.getItem("accessToken");
+    const { refreshToken, accessToken } = getAccessAndRefreshToken();
     if (accessToken && refreshToken) {
       checkAuth(dispatch, refreshToken);
     }

@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { requireAuthentication } from "common/helpers/requireAuthentication";
 import { PAGES_LINKS } from "common/pageLinks";
 import { IOrder } from "common/types/order.type";
 import Layout from "components/Layout/Layout";
 import NextSolid from "components/UI/Icons/NextSolid";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Router from "next/router";
 import { getOrdersByUserId } from "proxy/fetches/fetchOrders";
 import React, { useEffect } from "react";
@@ -66,5 +67,13 @@ const ProfileOrdersPage: NextPage = () => {
     </Layout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+  async ctx => {
+    return {
+      props: {},
+    };
+  }
+);
 
 export default ProfileOrdersPage;

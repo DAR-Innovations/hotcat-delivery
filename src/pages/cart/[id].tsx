@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { OrderDetailsDTO } from "common/dto/OrderDetialsDTO";
+import { requireAuthentication } from "common/helpers/requireAuthentication";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import { IOrder } from "common/types/order.type";
 import { IPaymentMethod } from "common/types/paymentMethod.type";
@@ -7,6 +8,7 @@ import OrderedCartDeliveryDetails from "components/CartPageComponents/OrderedCar
 import Layout from "components/Layout/Layout";
 import MasterCardColored from "components/UI/Icons/MasterCardColored";
 import PayPalColored from "components/UI/Icons/PayPalColored";
+import { GetServerSideProps } from "next";
 import Router, { useRouter } from "next/router";
 import {
   fillPaymentAndDeliveryDetails,
@@ -190,7 +192,6 @@ const OrderedCartDetailsPage = () => {
       );
     }
 
-    //TODO: REDIRECT TO CHECK STATUS PAGE
     Router.push("/");
   };
 
@@ -346,5 +347,13 @@ const OrderedCartDetailsPage = () => {
     </Layout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+  async ctx => {
+    return {
+      props: {},
+    };
+  }
+);
 
 export default OrderedCartDetailsPage;

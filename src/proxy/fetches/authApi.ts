@@ -1,14 +1,28 @@
 import { LoginDTO } from "common/dto/LoginDTO";
 import { RegistrationDTO } from "common/dto/RegistrationDTO";
+import Cookies from "js-cookie";
 import AuthService from "services/AuthService";
 import { setAuth } from "store/slices/authSlice";
-import { AppDispatch, useAppDispatch } from "store/store";
+import { AppDispatch } from "store/store";
+
+export const getAccessAndRefreshToken = () => {
+  const accessToken = Cookies.get("accessToken");
+  const refreshToken = Cookies.get("refreshToken");
+
+  return { accessToken, refreshToken };
+};
 
 export const loginUser = async (dispatch: AppDispatch, loginDTO: LoginDTO) => {
   try {
     const response = await AuthService.login(loginDTO);
-    localStorage.setItem("accessToken", response.data.accessToken);
-    localStorage.setItem("refreshToken", response.data.refreshToken);
+
+    Cookies.set("accessToken", response.data.accessToken, {
+      sameSite: "Strict",
+    });
+    Cookies.set("refreshToken", response.data.refreshToken, {
+      sameSite: "Strict",
+    });
+
     dispatch(setAuth({ isAuth: true, userId: response.data.userId }));
     return true;
   } catch (error: any) {
@@ -23,8 +37,12 @@ export const registerUser = async (
 ) => {
   try {
     const response = await AuthService.registration(registerDTO);
-    localStorage.setItem("accessToken", response.data.accessToken);
-    localStorage.setItem("refreshToken", response.data.refreshToken);
+    Cookies.set("accessToken", response.data.accessToken, {
+      sameSite: "Strict",
+    });
+    Cookies.set("refreshToken", response.data.refreshToken, {
+      sameSite: "Strict",
+    });
     dispatch(setAuth({ isAuth: true, userId: response.data.userId }));
     return true;
   } catch (error: any) {
@@ -35,8 +53,8 @@ export const registerUser = async (
 
 export const logoutUser = async (dispatch: AppDispatch) => {
   try {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    Cookies.remove("accessToken");
+    Cookies.remove("refreshToken");
     dispatch(setAuth({ isAuth: false, userId: null }));
     return true;
   } catch (error: any) {
@@ -51,8 +69,12 @@ export const checkAuth = async (
 ) => {
   try {
     const response = await AuthService.checkOrRefreshToken(refreshToken);
-    localStorage.setItem("accessToken", response.data.accessToken);
-    localStorage.setItem("refreshToken", response.data.refreshToken);
+    Cookies.set("accessToken", response.data.accessToken, {
+      sameSite: "Strict",
+    });
+    Cookies.set("refreshToken", response.data.refreshToken, {
+      sameSite: "Strict",
+    });
     dispatch(setAuth({ isAuth: true, userId: response.data.userId }));
   } catch (error: any) {
     console.log(error?.message);

@@ -1,7 +1,8 @@
+import { requireAuthentication } from "common/helpers/requireAuthentication";
 import AdminOrdersList from "components/Admin/Orders/OrdersList";
 import Layout from "components/Layout/Layout";
 import AdminNavbar from "components/Navbar/AdminNavbar";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 
 const AdminOrdersPage: NextPage = () => {
@@ -13,5 +14,13 @@ const AdminOrdersPage: NextPage = () => {
     </Layout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+  async ctx => {
+    return {
+      props: {},
+    };
+  }
+);
 
 export default AdminOrdersPage;

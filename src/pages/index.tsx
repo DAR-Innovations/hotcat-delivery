@@ -5,7 +5,6 @@ import DeliveryCarOutline from "components/UI/Icons/DeliveryCarOutline";
 import HeartOutline from "components/UI/Icons/HeartOutline";
 import RamenOutline from "components/UI/Icons/RamenOutline";
 import type { NextPage } from "next";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   return (

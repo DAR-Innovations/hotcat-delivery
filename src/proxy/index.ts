@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const API_URL = "http://localhost:8080/api/v1";
 
@@ -8,8 +9,7 @@ const $api = axios.create({
 });
 
 $api.interceptors.request.use(config => {
-  //TODO: Change localStorage to sme
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = Cookies.get("accessToken");
   config.headers!.Authorization = `Bearer ${accessToken}`;
   return config;
 });
