@@ -6,21 +6,23 @@ import React from "react";
 import RestaurantListExceprt from "./RestaurantListExceprt";
 
 interface RestaurantsListProps {
-  restaurantsList?: IRestaurant[];
+  initialRestaurantsList?: IRestaurant[];
 }
 
-const RestaurantList = ({ restaurantsList }: RestaurantsListProps) => {
-  const { data } = useQuery<IRestaurant[]>(
+const RestaurantList = ({ initialRestaurantsList }: RestaurantsListProps) => {
+  const { data: restaurantsList } = useQuery<IRestaurant[]>(
     ["restaurantsList"],
     getAllRestaurants,
     {
-      initialData: restaurantsList,
+      initialData: initialRestaurantsList,
     }
   );
 
-  const renderedRestaurantExcepts = data?.map((restaurant, index) => (
-    <RestaurantListExceprt key={index} data={restaurant} />
-  ));
+  const renderedRestaurantExcepts = restaurantsList?.map(
+    (restaurant, index) => (
+      <RestaurantListExceprt key={index} data={restaurant} />
+    )
+  );
 
   return (
     <div className="flex flex-wrap">
@@ -32,8 +34,8 @@ const RestaurantList = ({ restaurantsList }: RestaurantsListProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const restaurantsList = await getAllRestaurants();
-  return { props: { restaurantsList } };
+  const initialRestaurantsList = await getAllRestaurants();
+  return { props: { initialRestaurantsList } };
 };
 
 export default RestaurantList;

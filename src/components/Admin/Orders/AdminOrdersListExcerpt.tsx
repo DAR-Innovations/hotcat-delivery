@@ -107,7 +107,7 @@ const AdminOrdersListExcerpt = ({ data }: AdminOrdersListExcerptProps) => {
         <button
           onClick={onDeliverySubmit}
           className={`border-2 border-black rounded-lg px-6 py-2 ${classNameIfDisabled} ${classNameIfDelivered}`}
-          disabled={data.isCooked === false && true}
+          disabled={isCooked === false && true}
         >
           Delivered
         </button>

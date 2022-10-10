@@ -1,7 +1,7 @@
 export const NAVBAR_PAGES_LINKS = {
   HOME: { name: "Home", path: "/" },
   MENU: { name: "Menu", path: "/menu" },
-  RESERVATION: { name: "Reservation", path: "/reservation" },
+  SEARCH: { name: "Search", path: "/search" },
   ABOUT: { name: "About", path: "/about" },
 };
 

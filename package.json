@@ -19,6 +19,7 @@
     "cookies": "^0.8.0",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
+    "lodash.debounce": "^4.0.8",
     "moment": "^2.29.4",
     "next": "12.3.1",
     "react": "18.2.0",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/node": "18.7.23",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

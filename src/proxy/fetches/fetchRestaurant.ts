@@ -1,5 +1,6 @@
 import axios from "axios";
 import { RestaurantDTO } from "common/dto/RestaurantDTO";
+import { IRestaurant } from "common/types/restaurant.type";
 import $api, { API_URL } from "proxy";
 
 export const postNewRestaurant = async (restaurantDTO: RestaurantDTO) => {
@@ -10,6 +11,14 @@ export const postNewRestaurant = async (restaurantDTO: RestaurantDTO) => {
 export const getAllRestaurants = async () => {
   const response = await axios.get(`${API_URL}/restaurants`);
   return response.data;
+};
+
+export const getAllRestaurantsByName = async (name: string) => {
+  const response = await axios.get(
+    `${API_URL}/restaurants/search?name=${name}`
+  );
+
+  return response.data as IRestaurant[];
 };
 
 export const deleteRestaurantById = async (id: number) => {
