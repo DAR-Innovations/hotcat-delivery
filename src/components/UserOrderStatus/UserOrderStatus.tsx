@@ -13,10 +13,10 @@ const UserOrderStatus = () => {
   return (
     <div
       onClick={handleOpenModal}
-      className="absolute bottom-10 cursor-pointer right-10 bg-orange-400 rounded-xl py-3 px-5 flex items-center gap-2"
+      className="absolute bottom-6 right-5 sm:bottom-10 sm:right-10 cursor-pointer  bg-orange-400 rounded-xl py-3 px-5 flex items-center gap-2"
     >
-      <LoupeSolid className="w-[18px] h-[18px]" />
-      <p>See order</p>
+      <LoupeSolid className="w-4 h-4  sm:w-[18px] sm:h-[18px]" />
+      <p className="text-sm sm:text-base">See order</p>
     </div>
   );
 };

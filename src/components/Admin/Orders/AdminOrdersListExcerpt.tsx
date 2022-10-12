@@ -82,13 +82,15 @@ const AdminOrdersListExcerpt = ({ data }: AdminOrdersListExcerptProps) => {
   };
 
   return (
-    <div className="p-5 border-2 border-black rounded-xl">
+    <div className="w-full sm:w-[285px] p-5 border-2 border-black rounded-xl">
       <div className="flex flex-col gap-2 pb-5 border-b-2 border-gray-200">
         <p className="font-semibold">Order #{data.id}</p>
         <p className="text-gray-400">{formattedDate}</p>
       </div>
 
-      <div className="py-5 border-b-2 border-gray-200">{joinedOrderItems}</div>
+      <div className="py-5 border-b-2 border-gray-200 truncate">
+        {joinedOrderItems}
+      </div>
 
       <div className="flex items-center justify-between gap-2 pt-6">
         <p>KZT {data.totalPrice}</p>

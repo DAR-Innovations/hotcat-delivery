@@ -28,7 +28,7 @@ const UserOrderStatusModal = () => {
       onClick={handleCloseModal}
       className={`${
         isModalActive ? "visible opacity-100" : "invisible opacity-0"
-      } absolute top-0 right-0 left-0 bottom-0 w-screen h-screen bg-black bg-opacity-60 backdrop-blur-sm duration-300 transition-all`}
+      } absolute top-0 right-0 left-0 bottom-0 w-screen h-screen bg-black bg-opacity-60 backdrop-blur-sm duration-300 transition-all px-4`}
     >
       <div className="h-full flex items-center justify-center">
         <div
@@ -38,8 +38,8 @@ const UserOrderStatusModal = () => {
           } min-w-[360px] sm:max-w-[500px] bg-white rounded-xl relative`}
         >
           <div className="w-full px-6 py-6">
-            <div className="">
-              <p className="font-semibold text-xl">
+            <div className="max-w-[85%]">
+              <p className="font-semibold text-xl truncate">
                 Order | {order?.restaurant.name}
               </p>
             </div>
@@ -65,7 +65,7 @@ const UserOrderStatusModal = () => {
           </div>
           <CloseSolid
             onClick={handleCloseModal}
-            className="absolute top-0 bg-orange-500 rounded-lg p-1 -right-12 w-8 h-8 cursor-pointer"
+            className="absolute top-5 right-5 sm:top-0 sm:-right-12  bg-orange-500 rounded-lg p-1 w-7 h-7 sm:w-8 sm:h-8 cursor-pointer"
             filledColor="white"
           />
         </div>
