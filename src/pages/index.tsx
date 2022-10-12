@@ -17,19 +17,21 @@ const Home: NextPage = () => {
             We offer people best <br /> way to enjoy their food
           </h2>
           <div className="flex items-center gap-x-3 sm:gap-x-7 lg:gap-x-16">
-            <div className="bg-orange-200 p-6 rounded-xl flex flex-col items-center justify-center gap-y-6 w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
+            <div className="border-2 border-orange-400 p-6 rounded-xl flex flex-col items-center justify-center gap-y-6 w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
               <RamenOutline className="w-10 h-10 sm:w-14 sm:h-14" />
               <p className="text-sm sm:text-base text-center text-gray-900">
                 Best food <br /> experience
               </p>
             </div>
-            <div className="bg-orange-200 p-6 rounded-xl flex flex-col items-center justify-center gap-y-4  w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
-              <DeliveryCarOutline className="w-16 h-16" />
+            <div className="border-2 border-orange-400 p-6 rounded-xl flex flex-col items-center justify-center gap-y-4  w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
+              <DeliveryCarOutline
+                className="w-16 h-16"
+              />
               <p className="text-sm sm:text-base text-center text-gray-900">
                 Different delivery <br /> services
               </p>
             </div>
-            <div className="bg-orange-200 p-6 rounded-xl flex flex-col items-center justify-center gap-y-5  w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
+            <div className="border-2 border-orange-400 p-6 rounded-xl flex flex-col items-center justify-center gap-y-5  w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
               <HeartOutline className="w-10 h-10 lg:w-14 lg:h-14" />
               <p className="text-sm sm:text-base text-center text-gray-900">
                 Food from <br /> restaurants you like

@@ -58,7 +58,7 @@ const Layout = ({
   );
 
   const layoutClassName = !Boolean(className)
-    ? "container mx-auto px-3 py-1 bg-white text-black font-inter leading-none pb-20"
+    ? "container mx-auto px-3 py-1 bg-white text-black font-montserrat tracking-normal leading-none pb-20"
     : className;
   const headerTitle = `Hotcat | ${title}`;
 
@@ -109,7 +109,7 @@ const Layout = ({
   }, [dispatch, userId, userOrderStatus]);
 
   return (
-    <div className="h-screen w-full overflow-x-hidden">
+    <div className="h-screen w-full overflow-x-hidden font-montserrat ">
       <Head>
         <title>{headerTitle}</title>
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
