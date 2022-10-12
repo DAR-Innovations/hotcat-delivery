@@ -10,6 +10,7 @@ import MasterCardColored from "components/UI/Icons/MasterCardColored";
 import PayPalColored from "components/UI/Icons/PayPalColored";
 import { GetServerSideProps } from "next";
 import Router, { useRouter } from "next/router";
+import { changeStateOfOrderInLocalStorage } from "proxy/fetches/fetchLocalStorage";
 import {
   fillPaymentAndDeliveryDetails,
   getOrderById,
@@ -192,6 +193,7 @@ const OrderedCartDetailsPage = () => {
       );
     }
 
+    changeStateOfOrderInLocalStorage(true);
     Router.push("/");
   };
 

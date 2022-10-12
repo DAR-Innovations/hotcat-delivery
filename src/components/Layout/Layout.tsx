@@ -5,7 +5,11 @@ import UserOrderStatus from "components/UserOrderStatus/UserOrderStatus";
 import UserOrderStatusModal from "components/UserOrderStatus/UserOrderStatusModal";
 import Head from "next/head";
 import { checkAuth, getAccessAndRefreshToken } from "proxy/fetches/authApi";
-import { fetchCart } from "proxy/fetches/fetchLocalStorage";
+import {
+  changeStateOfOrderInLocalStorage,
+  fetchCart,
+  getStateOfOrderInLocalStorage,
+} from "proxy/fetches/fetchLocalStorage";
 import { checkIfOrderIsActiveByUserId } from "proxy/fetches/fetchOrders";
 import React, { useEffect, useState } from "react";
 import { selectUserId } from "store/slices/authSlice";
@@ -39,7 +43,10 @@ const Layout = ({
   const isNotificationModalActive = useAppSelector(
     selectNotificationModalIsActive
   );
+
   const userId = useAppSelector(selectUserId);
+
+  const isOrderActive = getStateOfOrderInLocalStorage();
 
   const notificationModalMessage = useAppSelector(
     selectNotificationModalMessage
@@ -61,7 +68,7 @@ const Layout = ({
     [`userOrderStatus`],
     () => checkIfOrderIsActiveByUserId(userId!),
     {
-      enabled: userId !== null,
+      enabled: userId !== null && isOrderActive == true,
       refetchInterval: 3000,
     }
   );
@@ -92,6 +99,7 @@ const Layout = ({
             })
           );
         } else {
+          changeStateOfOrderInLocalStorage(false);
           return dispatch(clearUserOrderStatusModal());
         }
       }

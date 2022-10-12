@@ -113,3 +113,17 @@ export const fetchSubstractCountOfCartItem = (cartItem: ICartItem) => {
 
   return itemsList;
 };
+
+export const changeStateOfOrderInLocalStorage = (state: boolean) => {
+  localStorage.setItem("isOrderActive", JSON.stringify(state));
+};
+
+export const getStateOfOrderInLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    const isOrderActive: boolean = JSON.parse(
+      localStorage.getItem("isOrderActive") || JSON.stringify(false)
+    );
+
+    return isOrderActive;
+  }
+};
