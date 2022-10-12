@@ -20,7 +20,19 @@ const AdminOrdersList = ({ recentOrders }: AdminOrdersListProps) => {
     <AdminOrdersListExcerpt key={order.id} data={order} />
   ));
 
-  return <div className="flex gap-3">{renderedOrders}</div>;
+  return (
+    <div className="flex gap-3">
+      {orders && orders?.length > 0 ? (
+        renderedOrders
+      ) : (
+        <div className="w-full h-full flex items-center justify-center pt-10">
+          <p className="text-center text-2xl font-semibold text-gray-300">
+            No recent orders
+          </p>
+        </div>
+      )}
+    </div>
+  );
 };
 export const getStaticProps: GetStaticProps = async () => {
   const recentOrders = await getRecentOrders();

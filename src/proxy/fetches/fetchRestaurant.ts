@@ -1,5 +1,6 @@
 import axios from "axios";
 import { RestaurantDTO } from "common/dto/RestaurantDTO";
+import { RestaurantReportDTO } from "common/dto/RestaurantReportDTO";
 import { IRestaurant } from "common/types/restaurant.type";
 import $api, { API_URL } from "proxy";
 
@@ -11,6 +12,11 @@ export const postNewRestaurant = async (restaurantDTO: RestaurantDTO) => {
 export const getAllRestaurants = async () => {
   const response = await axios.get(`${API_URL}/restaurants`);
   return response.data;
+};
+
+export const getRestaurantReport = async () => {
+  const response = await axios.get(`${API_URL}/restaurants/report`);
+  return response.data as RestaurantReportDTO;
 };
 
 export const getAllRestaurantsByName = async (name: string) => {

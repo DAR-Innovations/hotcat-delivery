@@ -63,7 +63,15 @@ const ProfileOrdersPage: NextPage = () => {
         </h1>
 
         <main className="flex flex-col items-center gap-y-3 mt-4">
-          {renderedOrders}
+          {orders && orders?.length > 0 ? (
+            renderedOrders
+          ) : (
+            <div className="w-full h-full flex items-center justify-center pt-10">
+              <p className="text-center text-2xl font-semibold text-gray-300">
+                No recent orders
+              </p>
+            </div>
+          )}
         </main>
       </div>
     </Layout>
