@@ -9,7 +9,10 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import Router from "next/router";
 import { getAllDeliveryProviders } from "proxy/fetches/fetchDeliveryProvider";
-import { clearCartInLocalStorage } from "proxy/fetches/fetchLocalStorage";
+import {
+  clearCartInLocalStorage,
+  getStateOfOrderInLocalStorage,
+} from "proxy/fetches/fetchLocalStorage";
 import { getRestaurantByMenuId } from "proxy/fetches/fetchMenu";
 import { postNewOrder } from "proxy/fetches/fetchOrders";
 import React, { useEffect, useState } from "react";
@@ -90,11 +93,27 @@ const CartSidebar = ({ initialDeliveryProviders }: CartSidebarProps) => {
     }
   );
 
+  //TODO: TEST isOrdered state
   const handleOnOrder = async () => {
     if (!userId) return Router.push(PAGES_LINKS.LOGIN.path);
 
+    const isOrdered = getStateOfOrderInLocalStorage();
+
+    if (isOrdered) {
+      return dispatch(
+        showNotificationModal({
+          message: "You can't order while you have active one",
+          type: NOTIFICATION_TYPES.ERROR,
+        })
+      );
+    }
+
     const orderItemsDTOList: OrderItemDTO[] = cartItems.map(item => {
-      return { count: item.count, foodId: item.food.id };
+      return {
+        count: item.count,
+        foodId: item.food.id,
+        toppings: item.toppingsId,
+      };
     });
 
     const orderDTO: OrderDTO = {

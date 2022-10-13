@@ -105,7 +105,7 @@ const Navbar = () => {
       </div>
 
       {/* Auth, cart, burger */}
-      <div className="flex items-center gap-x-3 sm:gap-x-7">
+      <div className="flex items-center gap-x-3 sm:gap-x-7 relative">
         {/* Cart */}
         <div className="relative cursor-pointer mr-2 sm:mr-0">
           <Link href={PAGES_LINKS.CART.path}>

@@ -22,9 +22,13 @@ const AdminOrdersListExcerpt = ({ data }: AdminOrdersListExcerptProps) => {
 
   const formattedDate = formatDateToDDMMYYY(data.orderDate);
 
-  const formattedOrderItems = data.orderItemList.map(
-    item => `${item.food.name} x${item.count}`
-  );
+  const formattedOrderItems = data.orderItemList.map(item => {
+    const toppings = item.toppings.map(topping => topping.name).join(", ");
+
+    return `${item.food.name} x${item.count}${
+      toppings.length > 0 ? ` + (${toppings})` : ""
+    }`;
+  });
 
   const joinedOrderItems = formattedOrderItems.join(", ");
 

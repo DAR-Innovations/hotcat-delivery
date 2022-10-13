@@ -24,5 +24,6 @@ export const PAGES_LINKS = {
   ...NAVBAR_PAGES_LINKS,
   ...AUTH_PAGES_LINKS,
   ...PROFILE_PAGES_LINKS,
+  ...ADMIN_PAGES_LINKS,
   CART: { name: "Cart", path: "/cart" },
 };

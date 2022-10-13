@@ -1,6 +1,8 @@
 import { IFood } from "./food.type";
+import { ITopping } from "./topping.type";
 
-export interface ICartItem {
+export interface CartItem {
+  toppings: ITopping[];
   count: number;
   totalPrice: number;
   food: IFood;

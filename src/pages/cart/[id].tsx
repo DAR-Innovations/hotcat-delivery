@@ -241,7 +241,7 @@ const OrderedCartDetailsPage = () => {
                 </div>
 
                 <div>
-                  {selectedPaymentMethodName === "Credit card" ? (
+                  {selectedPaymentMethodName.toLowerCase() === "credit card" ? (
                     <MasterCardColored />
                   ) : (
                     <PayPalColored className="w-12 h-12" />

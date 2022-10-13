@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICartItem } from "common/types/cart.type";
+import { CartItemDTO } from "common/dto/CartItemDTO";
 import { RootState } from "store/store";
 
 export interface CartState {
   menuId: number | null;
-  cartItemsArr: ICartItem[];
+  cartItemsArr: CartItemDTO[];
 }
 
 export interface CartItemState {
   menuId: number | null;
-  cartItem: ICartItem;
+  cartItem: CartItemDTO;
 }
 
 const initialState: CartState = {
@@ -48,7 +48,7 @@ export const cartSlice = createSlice({
       }
     },
 
-    updateCartItemTotalPrice: (state, action: PayloadAction<ICartItem>) => {
+    updateCartItemTotalPrice: (state, action: PayloadAction<CartItemDTO>) => {
       const menuFoodId = action.payload.food.id;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
@@ -62,14 +62,14 @@ export const cartSlice = createSlice({
       }
     },
 
-    removeCartItem: (state, action: PayloadAction<ICartItem>) => {
+    removeCartItem: (state, action: PayloadAction<CartItemDTO>) => {
       const menuFoodId = action.payload.food.id;
       state.cartItemsArr = state.cartItemsArr.filter(
         item => item.food.id !== menuFoodId
       );
     },
 
-    addCountToCartItem: (state, action: PayloadAction<ICartItem>) => {
+    addCountToCartItem: (state, action: PayloadAction<CartItemDTO>) => {
       const menuFoodId = action.payload.food.id;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
@@ -79,7 +79,7 @@ export const cartSlice = createSlice({
       if (cartItemIndex !== -1) state.cartItemsArr[cartItemIndex].count += 1;
     },
 
-    substractCountOfCartItem: (state, action: PayloadAction<ICartItem>) => {
+    substractCountOfCartItem: (state, action: PayloadAction<CartItemDTO>) => {
       const menuFoodId = action.payload.food.id;
 
       const cartItemIndex = state.cartItemsArr.findIndex(
@@ -136,7 +136,7 @@ export const selectCartTotalPrice = (state: RootState) => {
 
 export const selectCountOfCartItem = (
   state: RootState,
-  cartItem: ICartItem
+  cartItem: CartItemDTO
 ) => {
   const menuFoodId = cartItem.food.id;
 
@@ -149,7 +149,7 @@ export const selectCountOfCartItem = (
 
 export const selectTotalPriceOfCartItem = (
   state: RootState,
-  cartItem: ICartItem
+  cartItem: CartItemDTO
 ) => {
   const menuFoodId = cartItem.food.id;
 

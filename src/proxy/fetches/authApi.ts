@@ -78,5 +78,15 @@ export const checkAuth = async (
     dispatch(setAuth({ isAuth: true, userId: response.data.userId }));
   } catch (error: any) {
     console.log(error?.message);
+    dispatch(setAuth({ isAuth: false, userId: null }));
+  }
+};
+
+export const checkAuthAndReturnUserId = async (refreshToken: string) => {
+  try {
+    const response = await AuthService.checkOrRefreshToken(refreshToken);
+    return response.data.userId;
+  } catch (error: any) {
+    return null;
   }
 };

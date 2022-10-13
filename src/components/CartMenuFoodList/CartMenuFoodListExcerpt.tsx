@@ -1,4 +1,4 @@
-import { ICartItem } from "common/types/cart.type";
+import { CartItemDTO } from "common/types/cart.type";
 import CloseSolid from "components/UI/Icons/CloseSolid";
 import MinusSolid from "components/UI/Icons/MinusSolid";
 import PlusSolid from "components/UI/Icons/PlusSolid";
@@ -21,7 +21,7 @@ import {
 import { useAppDispatch, useAppSelector } from "store/store";
 
 interface MenuFoodOrdersListExcerptProps {
-  data: ICartItem;
+  data: CartItemDTO;
 }
 
 const CartMenuFoodListExcerpt = ({ data }: MenuFoodOrdersListExcerptProps) => {

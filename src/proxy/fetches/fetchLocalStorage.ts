@@ -1,4 +1,4 @@
-import { ICartItem } from "common/types/cart.type";
+import { CartItemDTO } from "common/dto/CartItemDTO";
 import { CartItemState, CartState } from "store/slices/cartSlice";
 
 const getCartFromLocalStorage = () => {
@@ -47,7 +47,7 @@ export const clearCartInLocalStorage = () => {
   localStorage.removeItem("ordersList");
 };
 
-export const fetchUpdateCartItemTotalPrice = (cartItem: ICartItem) => {
+export const fetchUpdateCartItemTotalPrice = (cartItem: CartItemDTO) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
   const menuFoodId = cartItem.food.id;
@@ -67,7 +67,7 @@ export const fetchUpdateCartItemTotalPrice = (cartItem: ICartItem) => {
   return itemsList;
 };
 
-export const fetchRemoveCartItem = (cartItem: ICartItem) => {
+export const fetchRemoveCartItem = (cartItem: CartItemDTO) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
   const menuFoodId = cartItem.food.id;
@@ -75,12 +75,16 @@ export const fetchRemoveCartItem = (cartItem: ICartItem) => {
     item => item.food.id !== menuFoodId
   );
 
+  if (itemsList.cartItemsArr.length === 0) {
+    return localStorage.removeItem("ordersList");
+  }
+
   localStorage.setItem("ordersList", JSON.stringify(itemsList));
 
   return itemsList;
 };
 
-export const fetchAddCountToCartItem = (cartItem: ICartItem) => {
+export const fetchAddCountToCartItem = (cartItem: CartItemDTO) => {
   const itemsList: CartState = getCartFromLocalStorage();
 
   const menuFoodId = cartItem.food.id;
@@ -96,10 +100,10 @@ export const fetchAddCountToCartItem = (cartItem: ICartItem) => {
   return itemsList;
 };
 
-export const fetchSubstractCountOfCartItem = (cartItem: ICartItem) => {
+export const fetchSubstractCountOfCartItem = (cartItem: CartItemDTO) => {
   let itemsList: CartState =
     JSON.parse(localStorage.getItem("ordersList") || "[]") ||
-    ([] as ICartItem[]);
+    ([] as CartItemDTO[]);
 
   const menuFoodId = cartItem.food.id;
 

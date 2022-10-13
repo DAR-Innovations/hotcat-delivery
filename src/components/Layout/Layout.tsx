@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import MenuFoodModal from "components/MenuFoodList/MenuFoodModal";
 import Navbar from "components/Navbar/Navbar";
 import NotificationModal from "components/NotificationModal/NotificationModal";
 import UserOrderStatus from "components/UserOrderStatus/UserOrderStatus";
@@ -58,7 +59,7 @@ const Layout = ({
   );
 
   const layoutClassName = !Boolean(className)
-    ? "container mx-auto px-3 py-1 bg-white text-black font-montserrat tracking-normal leading-none pb-20"
+    ? "container w-full min-h-full mx-auto px-3 py-1 bg-white text-black font-montserrat tracking-normal leading-none pb-20"
     : className;
   const headerTitle = `Hotcat | ${title}`;
 
@@ -109,7 +110,7 @@ const Layout = ({
   }, [dispatch, userId, userOrderStatus]);
 
   return (
-    <div className="h-screen w-full overflow-x-hidden font-montserrat ">
+    <div className="min-h-screen w-full overflow-x-hidden overflow-y-auto relative">
       <Head>
         <title>{headerTitle}</title>
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
@@ -143,6 +144,7 @@ const Layout = ({
       />
 
       {isOrderProcceding && <UserOrderStatus />}
+      <MenuFoodModal />
 
       {isOrderProcceding && <UserOrderStatusModal />}
     </div>

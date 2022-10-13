@@ -4,7 +4,6 @@ import { IMenu } from "common/types/menu.type";
 import { IRestaurant } from "common/types/restaurant.type";
 import Layout from "components/Layout/Layout";
 import MenuFoodList from "components/MenuFoodList/MenuFoodList";
-import MenuFoodModal from "components/MenuFoodList/MenuFoodModal";
 import MenuFoodOrdersList from "components/MenuFoodList/MenuFoodOrderList/MenuFoodOrdersList";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
 import Link from "next/link";
@@ -61,7 +60,7 @@ const RestaurantMenuPage = () => {
   return (
     <Layout title="Menu">
       {data?.foodList ? (
-        <>
+        <div>
           <h1 className="font-semibold text-3xl py-7">{data?.name}</h1>
           <div className="grid sm:grid-cols-5 lg:grid-cols-4 gap-x-4 ">
             <main className="w-full col-span-4 sm:col-span-3 lg:col-span-3">
@@ -81,8 +80,7 @@ const RestaurantMenuPage = () => {
               </section>
             </div>
           </div>
-          <MenuFoodModal />
-        </>
+        </div>
       ) : (
         <div className="flex flex-col justify-center items-center h-screen gap-5">
           <p className="text-2xl text-center text-gray-300">There is no menu</p>
