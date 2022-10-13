@@ -62,7 +62,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative flex py-5 items-center justify-between">
+    <div className="flex py-5 items-center justify-between">
       <div>
         <Link href={PAGES_LINKS.HOME.path}>
           <picture>
@@ -82,13 +82,35 @@ const Navbar = () => {
       </div>
 
       {/* Burger Navbar */}
-      <div
+      {/* <div
         className={`${
           isBurgerModalActive ? "block" : "hidden"
         } absolute z-10 top-[75px] left-3 right-3  rounded-xl bg-[#000000] shadow-2xl shadow-[#648e9e65]`}
       >
         <div className="flex flex-col items-center space-y-3 py-8 text-gray-200">
           {renderedNavbarLinks}
+        </div>
+      </div> */}
+
+      <div
+        onClick={handleBurgerBtn}
+        className={`${
+          isBurgerModalActive ? "visible opacity-100" : "invisible opacity-0"
+        } absolute top-[76px] right-0 left-0 bottom-0 w-screen h-screen duration-300 transition-all`}
+      >
+        <div className="h-full relative">
+          <div
+            onClick={e => e.stopPropagation()}
+            className={`${
+              isBurgerModalActive
+                ? "visible opacity-100"
+                : "invisible opacity-0"
+            } absolute z-10 top-0 left-3 right-3 rounded-xl bg-[#000000] shadow-2xl shadow-[#648e9e65]`}
+          >
+            <div className="flex flex-col items-center space-y-3 py-8 text-gray-200">
+              {renderedNavbarLinks}
+            </div>
+          </div>
         </div>
       </div>
 
