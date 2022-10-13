@@ -1,6 +1,5 @@
 import React from "react";
 import AdminDeliveryProviderList from "./AdminDeliveryProviderList";
-import AdminDeliveryProviderListExcerpt from "./AdminDeliveryProviderListExcerpt";
 import NewDeliveryProviderCreator from "./NewDeliveryProviderCreator";
 
 const AdminDeliveryProvider = () => {

@@ -82,16 +82,6 @@ const Navbar = () => {
       </div>
 
       {/* Burger Navbar */}
-      {/* <div
-        className={`${
-          isBurgerModalActive ? "block" : "hidden"
-        } absolute z-10 top-[75px] left-3 right-3  rounded-xl bg-[#000000] shadow-2xl shadow-[#648e9e65]`}
-      >
-        <div className="flex flex-col items-center space-y-3 py-8 text-gray-200">
-          {renderedNavbarLinks}
-        </div>
-      </div> */}
-
       <div
         onClick={handleBurgerBtn}
         className={`${

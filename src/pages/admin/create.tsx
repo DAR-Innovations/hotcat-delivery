@@ -3,6 +3,7 @@ import AdminDeliveryProvider from "components/Admin/DeliveryProviders/AdminDeliv
 import AdminFoods from "components/Admin/Foods/AdminFoods";
 import AdminPaymentMethods from "components/Admin/PaymentMethods/AdminPaymentMethods";
 import AdminRestaurant from "components/Admin/Restaurants/AdminRestaurant";
+import AdminTopping from "components/Admin/Toppings/AdminTopping";
 import Layout from "components/Layout/Layout";
 import AdminNavbar from "components/Navbar/AdminNavbar";
 import { GetServerSideProps, NextPage } from "next";
@@ -18,6 +19,7 @@ const AdminCreatePage: NextPage = () => {
         <AdminFoods />
         <AdminDeliveryProvider />
         <AdminPaymentMethods />
+        <AdminTopping />
       </main>
     </Layout>
   );
