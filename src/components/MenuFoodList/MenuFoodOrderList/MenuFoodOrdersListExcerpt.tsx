@@ -1,4 +1,4 @@
-import { CartItemDTO } from "common/types/cart.type";
+import { CartItemDTO } from "common/dto/CartItemDTO";
 import CloseSolid from "components/UI/Icons/CloseSolid";
 import MinusSolid from "components/UI/Icons/MinusSolid";
 import PlusSolid from "components/UI/Icons/PlusSolid";
