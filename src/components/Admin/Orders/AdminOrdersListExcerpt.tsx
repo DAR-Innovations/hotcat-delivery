@@ -1,14 +1,15 @@
 import { formatDateToDDMMYYY } from "common/helpers/dateFormatter";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import { IOrder } from "common/types/order.type";
+import ExpandBlockSolid from "components/UI/Icons/ExpandBlockSolid";
 import {
   changeCookingStatusOfOrder,
   changeDeliveryStatusOfOrder,
 } from "proxy/fetches/fetchOrders";
 import React, { useState } from "react";
+import { showAdminOrderModal } from "store/slices/adminOrdersModalSlice";
 import { showNotificationModal } from "store/slices/notificationModalSlice";
 import { useAppDispatch } from "store/store";
-import { on } from "stream";
 
 interface AdminOrdersListExcerptProps {
   data: IOrder;
@@ -85,11 +86,20 @@ const AdminOrdersListExcerpt = ({ data }: AdminOrdersListExcerptProps) => {
     setIsDelivered(true);
   };
 
+  const handleOpenAdminOrderModal = () => {
+    return dispatch(showAdminOrderModal(data));
+  };
+
   return (
     <div className="w-full sm:w-[285px] p-5 border-2 border-black rounded-xl">
-      <div className="flex flex-col gap-2 pb-5 border-b-2 border-gray-200">
-        <p className="font-semibold">Order #{data.id}</p>
-        <p className="text-gray-400">{formattedDate}</p>
+      <div className="flex justify-between items-center gap-x-5 pb-5 border-b-2 border-gray-200">
+        <div className="flex flex-col gap-2 truncate">
+          <p className="font-semibold truncate">Order #{data.id}</p>
+          <p className="text-gray-400 truncate">{formattedDate}</p>
+        </div>
+        <div onClick={handleOpenAdminOrderModal}>
+          <ExpandBlockSolid className="w-7 h-7 cursor-pointer" />
+        </div>
       </div>
 
       <div className="py-5 border-b-2 border-gray-200 truncate">

@@ -10,7 +10,7 @@ import ProfileUserOutline from "components/UI/Icons/ProfileOutline";
 import Link from "next/link";
 import { logoutUser } from "proxy/fetches/authApi";
 import { fetchUser } from "proxy/fetches/fetchUser";
-import React, { MouseEventHandler, useState } from "react";
+import React, { memo, MouseEventHandler, useState } from "react";
 import { selectUserId } from "store/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "store/store";
 
@@ -96,4 +96,4 @@ const ProfileNavbar = ({ isActive, handleBtn }: ProfileNavbarProps) => {
   );
 };
 
-export default ProfileNavbar;
+export default memo(ProfileNavbar);

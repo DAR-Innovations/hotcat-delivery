@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { selectCartItemsArr } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";
 import CartMenuFoodListExcerpt from "./CartMenuFoodListExcerpt";
@@ -14,4 +14,4 @@ const CartMenuFoodList = () => {
   );
 };
 
-export default CartMenuFoodList;
+export default memo(CartMenuFoodList);

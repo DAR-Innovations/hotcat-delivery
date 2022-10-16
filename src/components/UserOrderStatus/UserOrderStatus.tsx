@@ -21,4 +21,4 @@ const UserOrderStatus = () => {
   );
 };
 
-export default UserOrderStatus;
+export default React.memo(UserOrderStatus);

@@ -9,7 +9,7 @@ import {
   fetchSubstractCountOfCartItem,
   fetchUpdateCartItemTotalPrice,
 } from "proxy/fetches/fetchLocalStorage";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   addCountToCartItem,
   removeCartItem,
@@ -102,4 +102,4 @@ const CartMenuFoodListExcerpt = ({ data }: MenuFoodOrdersListExcerptProps) => {
   );
 };
 
-export default CartMenuFoodListExcerpt;
+export default memo(CartMenuFoodListExcerpt);

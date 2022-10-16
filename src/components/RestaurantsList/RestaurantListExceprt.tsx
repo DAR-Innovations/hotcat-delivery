@@ -59,4 +59,4 @@ const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
   );
 };
 
-export default RestaurantListExceprt;
+export default React.memo(RestaurantListExceprt);

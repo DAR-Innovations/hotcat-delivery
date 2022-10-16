@@ -6,7 +6,6 @@ import React, { MutableRefObject, useRef } from "react";
 import { showNotificationModal } from "store/slices/notificationModalSlice";
 import { useAppDispatch } from "store/store";
 
-//TODO: test create topping
 const NewToppingCreator = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();

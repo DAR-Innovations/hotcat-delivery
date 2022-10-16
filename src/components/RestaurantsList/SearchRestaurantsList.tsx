@@ -28,4 +28,4 @@ const SearchRestaurantsList = ({ data }: SearchRestaurantsListProps) => {
   );
 };
 
-export default SearchRestaurantsList;
+export default React.memo(SearchRestaurantsList);

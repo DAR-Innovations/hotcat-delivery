@@ -12,7 +12,7 @@ import {
   getStateOfOrderInLocalStorage,
 } from "proxy/fetches/fetchLocalStorage";
 import { checkIfOrderIsActiveByUserId } from "proxy/fetches/fetchOrders";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { selectUserId } from "store/slices/authSlice";
 import { setCartItemsArr } from "store/slices/cartSlice";
 import {
@@ -151,4 +151,4 @@ const Layout = ({
   );
 };
 
-export default Layout;
+export default memo(Layout);

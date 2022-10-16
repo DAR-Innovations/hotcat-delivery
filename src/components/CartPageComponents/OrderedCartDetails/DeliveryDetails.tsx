@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, memo } from "react";
 
 interface OrderedCartDeliveryDetailsProps {
   address: string;
@@ -88,4 +88,4 @@ const OrderedCartDeliveryDetails = ({
   );
 };
 
-export default OrderedCartDeliveryDetails;
+export default memo(OrderedCartDeliveryDetails);

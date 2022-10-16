@@ -7,7 +7,13 @@ import PlusSolid from "components/UI/Icons/PlusSolid";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
 import { fetchPostNewCartItem } from "proxy/fetches/fetchLocalStorage";
 import { getAllToppings } from "proxy/fetches/fetchToppings";
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  memo,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { CartItemState, setCartItem } from "store/slices/cartSlice";
 import {
   closeMenuFoodModal,
@@ -201,4 +207,4 @@ const MenuFoodModal = () => {
   );
 };
 
-export default MenuFoodModal;
+export default memo(MenuFoodModal);

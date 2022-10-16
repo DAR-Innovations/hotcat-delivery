@@ -76,4 +76,4 @@ const UserOrderStatusModal = () => {
   );
 };
 
-export default UserOrderStatusModal;
+export default React.memo(UserOrderStatusModal);

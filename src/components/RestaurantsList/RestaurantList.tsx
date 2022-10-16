@@ -38,4 +38,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { initialRestaurantsList } };
 };
 
-export default RestaurantList;
+export default React.memo(RestaurantList);

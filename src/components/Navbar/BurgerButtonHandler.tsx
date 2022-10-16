@@ -1,5 +1,5 @@
 import BurgerOpenSolid from "components/UI/Icons/BurgerSolid";
-import React, { MouseEventHandler } from "react";
+import React, { memo, MouseEventHandler } from "react";
 import CloseSolid from "../UI/Icons/CloseSolid";
 
 interface BurgerButtonProps {
@@ -19,4 +19,4 @@ const BurgerButtonHandler = ({ handleBtn, isActive }: BurgerButtonProps) => {
   );
 };
 
-export default BurgerButtonHandler;
+export default memo(BurgerButtonHandler);

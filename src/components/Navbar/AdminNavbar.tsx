@@ -31,4 +31,4 @@ const AdminNavbar = () => {
   );
 };
 
-export default AdminNavbar;
+export default React.memo(AdminNavbar);

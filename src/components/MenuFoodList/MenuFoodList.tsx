@@ -1,5 +1,5 @@
 import { IMenu } from "common/types/menu.type";
-import React from "react";
+import React, { memo } from "react";
 import MenuFoodListExcerpt from "./MenuFoodListExcerpt";
 
 interface MenuFoodList {
@@ -20,4 +20,4 @@ const MenuFoodList = ({ data }: MenuFoodList) => {
   );
 };
 
-export default MenuFoodList;
+export default memo(MenuFoodList);

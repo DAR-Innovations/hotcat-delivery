@@ -15,7 +15,7 @@ import {
 } from "proxy/fetches/fetchLocalStorage";
 import { getRestaurantByMenuId } from "proxy/fetches/fetchMenu";
 import { postNewOrder } from "proxy/fetches/fetchOrders";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { selectUserId } from "store/slices/authSlice";
 import {
   clearCart,
@@ -200,4 +200,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { deliveryProvidersList } };
 };
 
-export default CartSidebar;
+export default memo(CartSidebar);

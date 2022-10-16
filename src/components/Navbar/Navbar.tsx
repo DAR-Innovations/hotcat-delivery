@@ -6,7 +6,7 @@ import {
 import CartSolid from "components/UI/Icons/CartSolid";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { selectIsAuth } from "store/slices/authSlice";
 import { selectSizeOfCartItemsArr } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";
@@ -141,4 +141,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

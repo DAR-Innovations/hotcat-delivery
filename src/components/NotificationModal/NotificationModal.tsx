@@ -34,9 +34,10 @@ const NotificationModal = ({
 
   const styleDependsOnType = `${
     isActive ? "visible opacity-100" : "invisible opacity-0"
-  } fixed transition-all duration-300 delay-200 justify-center items-center bottom-10 right-10 max-w-[350px] min-w-[300px] py-4 px-8 rounded-xl ${
+  } fixed transition-all duration-300 z-50 delay-200 justify-center items-center bottom-10 right-10 max-w-[350px] min-w-[300px] py-4 px-8 rounded-xl ${
     type === NOTIFICATION_TYPES.ERROR && ERROR_MODAL_STYLE
   } ${type === NOTIFICATION_TYPES.SUCCESS && SUCCESS_MODAL_STYLE}`;
+
   return (
     <div className={styleDependsOnType}>
       <div className="w-full flex justify-between items-center">
@@ -54,4 +55,4 @@ const NotificationModal = ({
   );
 };
 
-export default NotificationModal;
+export default React.memo(NotificationModal);

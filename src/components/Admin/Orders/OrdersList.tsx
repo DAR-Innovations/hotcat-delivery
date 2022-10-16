@@ -4,6 +4,7 @@ import { GetStaticProps } from "next";
 import { getRecentOrders } from "proxy/fetches/fetchOrders";
 import React from "react";
 import AdminOrdersListExcerpt from "./AdminOrdersListExcerpt";
+import AdminOrdersModal from "./AdminOrdersModal";
 
 interface AdminOrdersListProps {
   recentOrders?: IOrder[];
@@ -31,6 +32,8 @@ const AdminOrdersList = ({ recentOrders }: AdminOrdersListProps) => {
           </p>
         </div>
       )}
+
+      <AdminOrdersModal />
     </div>
   );
 };
