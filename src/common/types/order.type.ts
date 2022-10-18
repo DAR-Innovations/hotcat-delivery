@@ -1,4 +1,5 @@
 import { CartItem } from "./cart.type";
+import { IDeliveryDetails } from "./deliveryDetails.type";
 import { IDeliveryProvider } from "./deliveryProvider";
 import { IRestaurant } from "./restaurant.type";
 import { IUser } from "./user.type";
@@ -13,4 +14,5 @@ export interface IOrder {
   totalPrice: number;
   isCooked: boolean;
   isDelivered: boolean;
+  deliveryDetails: IDeliveryDetails;
 }

@@ -54,4 +54,3 @@ export const checkIfOrderIsActiveByUserId = async (userId: number) => {
   const response = await axios.get(`${API_URL}/orders/active/user/${userId}`);
   return response.data as UserOrderStatusDTO;
 };
-

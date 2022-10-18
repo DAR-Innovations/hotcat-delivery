@@ -56,11 +56,32 @@ const AdminOrdersModal = () => {
                 {formattedOrderItems}
               </div>
 
-              <div className="flex items-center justify-between gap-2 pt-6">
-                <p>KZT {order?.totalPrice}</p>
-                <p className="text-gray-400">
-                  X{order?.orderItemList.length} items
-                </p>
+              {/* DETAILS */}
+              <div className="flex flex-col gap-3 pt-6 truncate">
+                <div className="flex items-center justify-between gap-2 truncate">
+                  <p>Total:</p>
+                  <p className="text-gray-400 truncate">
+                    KZT {order?.totalPrice}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between gap-2 truncate">
+                  <p>Delivery:</p>
+                  <p className="text-gray-400 truncate">
+                    {order?.deliveryProvider.name}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between gap-2 truncate">
+                  <p>Address:</p>
+                  <p className="text-gray-400 truncate">
+                    {order?.deliveryDetails.address}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between gap-2 truncate">
+                  <p>Restaurant:</p>
+                  <p className="text-gray-400 truncate">
+                    {order?.restaurant.name}
+                  </p>
+                </div>
               </div>
 
               <div className="pt-5">

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import MenuFoodModal from "components/MenuFoodList/MenuFoodModal";
 import Navbar from "components/Navbar/Navbar";
 import NotificationModal from "components/NotificationModal/NotificationModal";
+import DeliveredModalStatus from "components/UserOrderStatus/DeliveredModalStatus";
 import UserOrderStatus from "components/UserOrderStatus/UserOrderStatus";
 import UserOrderStatusModal from "components/UserOrderStatus/UserOrderStatusModal";
 import Head from "next/head";
@@ -15,6 +16,7 @@ import { checkIfOrderIsActiveByUserId } from "proxy/fetches/fetchOrders";
 import React, { memo, useEffect, useState } from "react";
 import { selectUserId } from "store/slices/authSlice";
 import { setCartItemsArr } from "store/slices/cartSlice";
+import { showDeliveredModal } from "store/slices/deliveredModalStatus";
 import {
   selectNotificationModalIsActive,
   selectNotificationModalMessage,
@@ -22,7 +24,6 @@ import {
 } from "store/slices/notificationModalSlice";
 import {
   clearUserOrderStatusModal,
-  closeUserOrderStatusModal,
   selectUserOrderStatusModalIsProcceding,
   setUserOrderStatus,
 } from "store/slices/userOrderStatusModalSlice";
@@ -101,6 +102,7 @@ const Layout = ({
           );
         } else {
           changeStateOfOrderInLocalStorage(false);
+          dispatch(showDeliveredModal());
           return dispatch(clearUserOrderStatusModal());
         }
       }
@@ -147,6 +149,8 @@ const Layout = ({
       <MenuFoodModal />
 
       {isOrderProcceding && <UserOrderStatusModal />}
+
+      {true && <DeliveredModalStatus />}
     </div>
   );
 };

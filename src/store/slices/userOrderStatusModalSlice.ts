@@ -64,7 +64,7 @@ export const selectUserOrderStatusModalOrder = (state: RootState) =>
 export const selectUserOrderStatusModalStatus = (state: RootState) => {
   return {
     isCooked: state.userOrderStatusModalSlice.order?.isCooked,
-    isDelivered: state.userOrderStatusModalSlice.order?.isCooked,
+    isDelivered: state.userOrderStatusModalSlice.order?.isDelivered,
   };
 };
 
