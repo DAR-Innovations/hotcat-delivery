@@ -73,6 +73,12 @@ const AdminHomePage: NextPage = ({ restaurantReport }: AdminHomePageProps) => {
             </p>
             <p className="text-base text-gray-400">Monthly Revenue</p>
           </div>
+          <div className="min-h-[100px] w-full sm:w-[190px] flex flex-col justify-between items-start bg-gray-100 rounded-xl p-5">
+            <p className="w-full font-semibold text-xl mb-1 truncate">
+              {data?.subscribedCustomersAmount}
+            </p>
+            <p className="text-base text-gray-400">Subscribers</p>
+          </div>
         </div>
 
         <div className="w-full mt-12">

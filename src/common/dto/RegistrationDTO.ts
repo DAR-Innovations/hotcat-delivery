@@ -3,4 +3,5 @@ export interface RegistrationDTO {
   email: string;
   name: string;
   password: string;
+  isSubscribed: boolean;
 }

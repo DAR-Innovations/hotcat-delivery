@@ -2,7 +2,6 @@ import { RegistrationDTO } from "common/dto/RegistrationDTO";
 import { PAGES_LINKS } from "common/pageLinks";
 import { NOTIFICATION_TYPES } from "common/types/notification.enum";
 import Layout from "components/Layout/Layout";
-import NotificationModal from "components/NotificationModal/NotificationModal";
 import BackSolid from "components/UI/Icons/BackSolid";
 import { NextPage } from "next";
 import Link from "next/link";
@@ -18,6 +17,12 @@ const SignupPage: NextPage = () => {
   const emailRef = useRef() as MutableRefObject<HTMLInputElement>;
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const passwordRef = useRef() as MutableRefObject<HTMLInputElement>;
+
+  const [isNotifiedChecked, setIsNotifiedChecked] = useState(false);
+
+  const handleOnChangeNotificationChecked = () => {
+    setIsNotifiedChecked(prev => !prev);
+  };
 
   const handleSignupSubmit = async () => {
     const usernameValue = usernameRef.current.value;
@@ -48,6 +53,7 @@ const SignupPage: NextPage = () => {
       email: emailValue,
       name: nameValue,
       password: passwordValue,
+      isSubscribed: isNotifiedChecked,
     };
 
     const isSignedUp = await registerUser(dispatch, registrationDTO);
@@ -120,6 +126,18 @@ const SignupPage: NextPage = () => {
               />
             </div>
 
+            <div className="mt-10">
+              <input
+                type="checkbox"
+                id="notification"
+                checked={isNotifiedChecked}
+                onChange={handleOnChangeNotificationChecked}
+              />
+              <label htmlFor="notification" className="text-gray-200 ml-2">
+                Get notifications on your email about new products and services
+              </label>
+            </div>
+
             <div className="w-full mt-10">
               <button
                 onClick={handleSignupSubmit}
@@ -129,7 +147,7 @@ const SignupPage: NextPage = () => {
               </button>
             </div>
 
-            <div className="flex item-center gap-2 mt-20 sm:mt-24">
+            <div className="flex item-center gap-2 mt-12 sm:mt-16">
               <p className="text-gray-200 text-base font-normal">
                 Already have an account?
               </p>

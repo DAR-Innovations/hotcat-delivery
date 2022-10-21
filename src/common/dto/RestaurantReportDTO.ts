@@ -5,4 +5,5 @@ export interface RestaurantReportDTO {
   transactionsAmount: number;
   monthlyEarning: number;
   lastOrders: IOrder[];
+  subscribedCustomersAmount: number;
 }
