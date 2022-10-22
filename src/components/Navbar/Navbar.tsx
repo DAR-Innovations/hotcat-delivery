@@ -7,6 +7,7 @@ import CartSolid from "components/UI/Icons/CartSolid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { memo, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { selectIsAuth } from "store/slices/authSlice";
 import { selectSizeOfCartItemsArr } from "store/slices/cartSlice";
 import { useAppSelector } from "store/store";
@@ -65,14 +66,12 @@ const Navbar = () => {
     <div className="flex py-5 items-center justify-between">
       <div>
         <Link href={PAGES_LINKS.HOME.path}>
-          <picture>
-            <img
-              loading="lazy"
-              className="inline-block h-9 sm:h-13 object-contain cursor-pointer"
-              src="/assets/logoWithText2.png"
-              alt="hotcat"
-            />
-          </picture>
+          <LazyLoadImage
+            effect="black-and-white"
+            className="inline-block h-9 sm:h-13 object-contain cursor-pointer"
+            src="/assets/logoWithText2.png"
+            alt="hotcat"
+          />
         </Link>
       </div>
 

@@ -5,6 +5,7 @@ import DeliveryCarOutline from "components/UI/Icons/DeliveryCarOutline";
 import HeartOutline from "components/UI/Icons/HeartOutline";
 import RamenOutline from "components/UI/Icons/RamenOutline";
 import type { NextPage } from "next";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Home: NextPage = () => {
   return (
@@ -24,9 +25,7 @@ const Home: NextPage = () => {
               </p>
             </div>
             <div className="border-2 border-orange-400 p-6 rounded-xl flex flex-col items-center justify-center gap-y-4  w-[110px] h-[160px] sm:min-w-[160px] sm:max-w-[160px] sm:h-[160px] lg:w-[190px] lg:h-[190px]">
-              <DeliveryCarOutline
-                className="w-16 h-16"
-              />
+              <DeliveryCarOutline className="w-16 h-16" />
               <p className="text-sm sm:text-base text-center text-gray-900">
                 Different delivery <br /> services
               </p>
@@ -42,14 +41,12 @@ const Home: NextPage = () => {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-y-2 sm:gap-x-12 lg:gap-x-24">
           <div>
-            <picture>
-              <img
-                loading="lazy"
-                className="min-w-[300px] h-[300px] sm:min-w-[300px] sm:h-[300px] lg:min-w-[430px] lg:h-[430px]"
-                src="/assets/plateWithFishPhoto.png"
-                alt="food"
-              />
-            </picture>
+            <LazyLoadImage
+              effect="blur"
+              className="min-w-[300px] h-[300px] sm:min-w-[300px] sm:h-[300px] lg:min-w-[430px] lg:h-[430px]"
+              src="/assets/plateWithFishPhoto.png"
+              alt="food"
+            />
           </div>
           <div className="flex flex-col items-center sm:items-start gap-y-4 sm:gap-y-5 sm:w-[100%] lg:w-[30%]">
             <h2 className="text-center sm:text-start text-xl sm:text-3xl font-bold leading-none">

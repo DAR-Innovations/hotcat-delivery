@@ -28,6 +28,7 @@ import {
   setUserOrderStatus,
 } from "store/slices/userOrderStatusModalSlice";
 import { useAppDispatch, useAppSelector } from "store/store";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface LayoutProps {
   className?: string;
@@ -62,7 +63,8 @@ const Layout = ({
   const layoutClassName = !Boolean(className)
     ? "container w-full min-h-full mx-auto px-3 py-1 bg-white text-black font-montserrat tracking-normal leading-none pb-20"
     : className;
-  const headerTitle = `Hotcat | ${title}`;
+
+  const headerTitle = `${title} | Hotcat`;
 
   const dispatch = useAppDispatch();
 

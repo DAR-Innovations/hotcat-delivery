@@ -1,6 +1,7 @@
 import { AUTH_PAGES_LINKS, PAGES_LINKS } from "common/pageLinks";
 import Link from "next/link";
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const HomeBanner = () => {
   return (
@@ -35,27 +36,26 @@ const HomeBanner = () => {
             </div>
 
             <div>
-              <picture>
-                <img
-                  loading="eager"
-                  className="mt-8 max-w-full w-[330px]  sm:w-[380px] lg:w-[500px]"
-                  src="/assets/plateWithSteakPhoto.png"
-                  alt="food"
-                />
-              </picture>
+              <LazyLoadImage
+                effect="blur"
+                width="100%"
+                className="mt-8 max-w-full w-[330px]  sm:w-[380px] lg:w-[500px]"
+                src="/assets/plateWithSteakPhoto.png"
+                alt="food"
+              />
             </div>
           </div>
         </div>
 
         <Link href={PAGES_LINKS.MENU.path}>
           <div className="inline-block sm:hidden w-full">
-            <picture>
-              <img
-                className="w-full max-h-[300px]"
-                src="/assets/plateWithSteakPhotoMobile.png"
-                alt="food"
-              />
-            </picture>
+            <LazyLoadImage
+              effect="blur"
+              width="100%"
+              className="w-full max-h-[300px]"
+              src="/assets/plateWithSteakPhotoMobile.png"
+              alt="food"
+            />
           </div>
         </Link>
       </div>

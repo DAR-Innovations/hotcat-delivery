@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { PAGES_LINKS } from "common/pageLinks";
 import { IMenu } from "common/types/menu.type";
-import { IRestaurant } from "common/types/restaurant.type";
 import Layout from "components/Layout/Layout";
 import MenuFoodList from "components/MenuFoodList/MenuFoodList";
 import MenuFoodOrdersList from "components/MenuFoodList/MenuFoodOrderList/MenuFoodOrdersList";
 import PriceWithSymbol from "components/UI/Templates/PriceWithSymbol";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { getMenuById } from "proxy/fetches/fetchMenu";
 import React from "react";
 import { selectCartTotalPrice } from "store/slices/cartSlice";

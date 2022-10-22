@@ -3,9 +3,9 @@ import { IRestaurant } from "common/types/restaurant.type";
 import CarSolid from "components/UI/Icons/CarSolid";
 import StarOutline from "components/UI/Icons/StarOutline";
 import TengeSolid from "components/UI/Icons/TengeSolid";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface RestaurantListExceprtProps {
   data: IRestaurant;
@@ -25,14 +25,12 @@ const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
       <Link href={restaurantMenuExcerptLink}>
         <div>
           <div className="w-full h-[200px] rounded-xl">
-            <picture>
-              <img
-                loading="lazy"
-                className="w-full h-[200px] object-cover rounded-xl"
-                src={data.image}
-                alt={data.name}
-              />
-            </picture>
+            <LazyLoadImage
+              className="w-full h-[200px] object-cover rounded-xl"
+              src={data.image}
+              alt={data.name}
+              effect="blur"
+            />
           </div>
           <div className="px-4 py-3 w-full">
             <h1 className="font-semibold text-xl truncate overflow-x-hidden">
