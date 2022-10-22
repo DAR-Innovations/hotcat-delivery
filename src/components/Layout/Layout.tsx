@@ -112,7 +112,7 @@ const Layout = ({
   }, [dispatch, userId, userOrderStatus]);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden overflow-y-auto relative">
+    <div className="min-h-screen w-full overflow-x-hidden overflow-y-hidden relative">
       <Head>
         <title>{headerTitle}</title>
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
@@ -134,6 +134,7 @@ const Layout = ({
           href="/assets/favicon-16x16.png"
         />
       </Head>
+
       <div className={layoutClassName}>
         {navbarIncluded && <Navbar />}
         {children}

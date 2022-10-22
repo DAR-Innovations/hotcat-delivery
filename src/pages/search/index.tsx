@@ -75,9 +75,7 @@ const SearchPage: NextPage = () => {
         </div>
       </div>
 
-      <div>
-        <SearchRestaurantsList data={resturantsList} />
-      </div>
+      <SearchRestaurantsList data={resturantsList} />
     </Layout>
   );
 };

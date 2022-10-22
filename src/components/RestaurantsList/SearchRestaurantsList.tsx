@@ -7,23 +7,21 @@ interface SearchRestaurantsListProps {
 }
 
 const SearchRestaurantsList = ({ data }: SearchRestaurantsListProps) => {
-  const renderedRestaurantExcepts = data?.map((restaurant, index) => (
-    <RestaurantListExceprt key={index} data={restaurant} />
+  const renderedRestaurantExcepts = data?.map(restaurant => (
+    <RestaurantListExceprt key={restaurant.id} data={restaurant} />
   ));
 
   return (
-    <div className="flex flex-wrap">
-      <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
-        {data && data?.length > 0 ? (
-          renderedRestaurantExcepts
-        ) : (
-          <div className="w-full h-full flex items-center justify-center pt-10">
-            <p className="text-center text-2xl font-semibold text-gray-300">
-              No search
-            </p>
-          </div>
-        )}
-      </div>
+    <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
+      {data && data?.length > 0 ? (
+        renderedRestaurantExcepts
+      ) : (
+        <div className="w-full h-full flex items-center justify-center pt-10">
+          <p className="text-center text-2xl font-semibold text-gray-300">
+            No search
+          </p>
+        </div>
+      )}
     </div>
   );
 };

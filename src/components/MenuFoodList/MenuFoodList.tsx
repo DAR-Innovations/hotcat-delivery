@@ -12,10 +12,8 @@ const MenuFoodList = ({ data }: MenuFoodList) => {
   ));
 
   return (
-    <div className="flex flex-wrap">
-      <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
-        {renderedMenuFoodExcepts}
-      </div>
+    <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
+      {renderedMenuFoodExcepts}
     </div>
   );
 };

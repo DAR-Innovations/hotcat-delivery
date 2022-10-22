@@ -14,10 +14,14 @@ interface RestaurantListExceprtProps {
 const RestaurantListExceprt = ({ data }: RestaurantListExceprtProps) => {
   const restaurantMenuExcerptLink = `${PAGES_LINKS.MENU.path}/${data.menu.id}`;
 
-  const restaurantDetails = [data.deliveryTime, data.rating].join("  |  ");
+  // const restaurantDetails = [data.deliveryTime, data.rating].join("  |  ");
 
   return (
-    <div className="w-[80%] h-[335px] sm:min-w-[200px] sm:max-w-[290px] lg:w-[280px] bg-[#ffffff] shadow-xl rounded-xl hover:scale-105 transition-all duration-400 cursor-pointer">
+    <div
+      className="w-[80%] h-[335px] sm:min-w-[200px] sm:max-w-[290px] lg:w-[280px] 
+                  bg-[#ffffff] shadow-xl rounded-xl hover:scale-105 transition-all 
+                  duration-400 cursor-pointer"
+    >
       <Link href={restaurantMenuExcerptLink}>
         <div>
           <div className="w-full h-[200px] rounded-xl">

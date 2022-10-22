@@ -17,7 +17,7 @@ export const PROFILE_PAGES_LINKS = {
 export const ADMIN_PAGES_LINKS = {
   DASHBOARD: { name: "Dashboard", path: "/admin" },
   ORDERS: { name: "Orders", path: "/admin/orders" },
-  ADD: { name: "Add", path: "/admin/create" },
+  CREATE: { name: "Create", path: "/admin/create" },
 };
 
 export const PAGES_LINKS = {

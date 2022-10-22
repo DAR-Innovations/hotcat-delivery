@@ -3,6 +3,7 @@ import AdminDeliveryProvider from "components/Admin/DeliveryProviders/AdminDeliv
 import AdminFoods from "components/Admin/Foods/AdminFoods";
 import AdminPaymentMethods from "components/Admin/PaymentMethods/AdminPaymentMethods";
 import AdminRestaurant from "components/Admin/Restaurants/AdminRestaurant";
+import SubscriberNotification from "components/Admin/SubscribersNotification/SubscriberNotification";
 import AdminTopping from "components/Admin/Toppings/AdminTopping";
 import Layout from "components/Layout/Layout";
 import AdminNavbar from "components/Navbar/AdminNavbar";
@@ -15,6 +16,7 @@ const AdminCreatePage: NextPage = () => {
       <AdminNavbar />
 
       <main className="w-full flex flex-col gap-8 my-8">
+        <SubscriberNotification />
         <AdminRestaurant />
         <AdminFoods />
         <AdminDeliveryProvider />

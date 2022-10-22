@@ -18,17 +18,13 @@ const RestaurantList = ({ initialRestaurantsList }: RestaurantsListProps) => {
     }
   );
 
-  const renderedRestaurantExcepts = restaurantsList?.map(
-    (restaurant, index) => (
-      <RestaurantListExceprt key={index} data={restaurant} />
-    )
-  );
+  const renderedRestaurantExcepts = restaurantsList?.map(restaurant => (
+    <RestaurantListExceprt key={restaurant.id} data={restaurant} />
+  ));
 
   return (
-    <div className="flex flex-wrap">
-      <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
-        {renderedRestaurantExcepts}
-      </div>
+    <div className="w-full flex flex-wrap items-center gap-6 justify-center sm:justify-start">
+      {renderedRestaurantExcepts}
     </div>
   );
 };

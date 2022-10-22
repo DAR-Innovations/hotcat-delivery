@@ -82,6 +82,17 @@ export const checkAuth = async (
   }
 };
 
+export const getRefrechedAccessAndRefreshToken = async (
+  refreshToken: string
+) => {
+  const response = await AuthService.checkOrRefreshToken(refreshToken);
+
+  return {
+    accessToken: response.data?.accessToken,
+    refreshToken: response.data?.refreshToken,
+  };
+};
+
 export const checkAuthAndReturnUserId = async (refreshToken: string) => {
   try {
     const response = await AuthService.checkOrRefreshToken(refreshToken);
