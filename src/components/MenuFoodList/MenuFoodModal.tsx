@@ -108,7 +108,7 @@ const MenuFoodModal = () => {
       />
       <label
         htmlFor={topping.id.toString()}
-        className="inline-flex peer-checked:bg-orange-500 peer-checked:text-white justify-between px-4 py-1 sm:py-2 border-gray-300 items-center w-full bg-white rounded-xl border-2 cursor-pointer peer-checked:border-orange-500"
+        className="inline-flex peer-checked:bg-orange-500 peer-checked:text-white justify-between px-4 py-2 border-gray-300 items-center w-full bg-white rounded-xl border-2 cursor-pointer peer-checked:border-orange-500"
       >
         <div className="block">
           <p className="text-sm sm:text-base -mt-1">{topping.name}</p>
