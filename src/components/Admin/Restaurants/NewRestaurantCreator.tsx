@@ -49,7 +49,7 @@ const NewRestaurantCreator = () => {
       value => value !== null && value !== undefined && value != ""
     );
 
-    if (parseInt(ratingValue) > 10 || parseInt(ratingValue) < 10) {
+    if (parseInt(ratingValue) > 10 || parseInt(ratingValue) < 0) {
       return dispatch(
         showNotificationModal({
           message: "Invalid rating",
@@ -57,6 +57,7 @@ const NewRestaurantCreator = () => {
         })
       );
     }
+    
     if (!isFormInputValid) {
       return dispatch(
         showNotificationModal({
