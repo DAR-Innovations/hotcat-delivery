@@ -28,7 +28,7 @@ import {
   setUserOrderStatus,
 } from "store/slices/userOrderStatusModalSlice";
 import { useAppDispatch, useAppSelector } from "store/store";
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface LayoutProps {
   className?: string;
@@ -134,6 +134,10 @@ const Layout = ({
           type="image/png"
           sizes="16x16"
           href="/assets/favicon-16x16.png"
+        />
+        <meta
+          name="google-site-verification"
+          content="kq5h0t6E1AdmFrG9yY1aLoR0QAspgeYkJV5idyHp6j4"
         />
       </Head>
 
