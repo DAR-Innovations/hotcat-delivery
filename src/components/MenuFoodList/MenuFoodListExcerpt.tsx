@@ -1,5 +1,4 @@
 import { IFood } from "common/types/food.type";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import React, { memo } from "react";
 import {
   FoodModalState,
@@ -36,13 +35,14 @@ const MenuFoodListExcerpt = ({ data, menuId }: MenuFoodListExcerptProps) => {
       className="w-[90%] max-w-[360px] sm:min-w-[200px] sm:max-w-[290px] lg:w-[240px] bg-[#ffffff] shadow-xl rounded-xl hover:scale-105 transition-all duration-400 cursor-pointer"
     >
       <div className="w-full h-[170px] rounded-xl">
-        <LazyLoadImage
-          effect="blur"
-          width="100%"
-          className="w-full h-[170px] object-cover rounded-xl"
-          src={data.image}
-          alt={data.name}
-        />
+        <picture>
+          <img
+            loading="lazy"
+            className="w-full h-[170px] object-cover rounded-xl"
+            src={data.image}
+            alt={data.name}
+          />
+        </picture>
       </div>
       <div className="px-4 py-3 sm:pb-5 w-full flex flex-row sm:flex-col justify-between items-center sm:items-start gap-x-4">
         <div className="w-[60%] sm:w-full">

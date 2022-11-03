@@ -28,7 +28,6 @@ import {
   setUserOrderStatus,
 } from "store/slices/userOrderStatusModalSlice";
 import { useAppDispatch, useAppSelector } from "store/store";
-import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface LayoutProps {
   className?: string;

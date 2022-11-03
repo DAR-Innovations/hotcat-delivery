@@ -14,7 +14,6 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CartItemState, setCartItem } from "store/slices/cartSlice";
 import {
   closeMenuFoodModal,
@@ -133,13 +132,14 @@ const MenuFoodModal = () => {
             } min-w-[360px] sm:w-[430px] bg-white rounded-xl relative`}
           >
             <div>
-              <LazyLoadImage
-                effect="blur"
-                width="100%"
-                className="w-full h-[300px] rounded-xl object-cover"
-                src={selectedFood?.image}
-                alt={selectedFood?.name}
-              />
+              <picture>
+                <img
+                  loading="lazy"
+                  className="w-full h-[300px] rounded-xl object-cover"
+                  src={selectedFood?.image}
+                  alt={selectedFood?.name}
+                />
+              </picture>
             </div>
 
             <div className="px-5 py-5">

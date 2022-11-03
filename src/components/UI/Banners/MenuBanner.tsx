@@ -1,14 +1,11 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MenuBanner = () => {
   return (
     <picture>
-      <LazyLoadImage
-        effect="blur"
-        width="100%"
-        className="w-full object-cover rounded-xl"
+      <img
         loading="lazy"
+        className="w-full object-cover rounded-xl"
         src="/assets/menuBanner.png"
         alt="sale"
       />
